@@ -29,7 +29,7 @@ const About = () => {
         </motion.div>
 
         {/* Narrative Section */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-16 md:gap-24 items-center mb-24 md:mb-40">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 sm:gap-16 md:gap-24 items-start mb-24 md:mb-40">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -44,11 +44,17 @@ const About = () => {
                 alt="Founder" 
                 className="relative w-full h-48 sm:h-64 md:h-80 object-cover rounded-2xl shadow-premium grayscale hover:grayscale-0 transition-all duration-1000" 
               />
-              <div className="absolute -bottom-8 sm:-bottom-10 -right-6 sm:-right-10 bg-white p-6 sm:p-10 shadow-premium rounded-xl hidden md:block">
+              <div className="hidden md:block absolute -bottom-8 sm:-bottom-10 -right-6 sm:-right-10 bg-white p-6 sm:p-10 shadow-premium rounded-xl">
                 <p className="text-primary font-bold text-[9px] sm:text-[10px] uppercase tracking-widest mb-2">The Visionary</p>
                 <h4 className="text-lg sm:text-2xl font-light">Mrs. Madhuri Gaikwad</h4>
                 <p className="text-muted text-xs sm:text-sm italic">Founder President</p>
               </div>
+            </div>
+
+            <div className="mt-4 bg-white p-4 sm:p-6 shadow-premium rounded-xl md:hidden">
+              <p className="text-primary font-bold text-[9px] sm:text-[10px] uppercase tracking-widest mb-2">The Visionary</p>
+              <h4 className="text-lg sm:text-2xl font-light">Mrs. Madhuri Gaikwad</h4>
+              <p className="text-muted text-xs sm:text-sm italic">Founder President</p>
             </div>
           </motion.div>
 

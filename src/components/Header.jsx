@@ -30,7 +30,7 @@ const Header = () => {
       style={{ padding: headerPadding }}
       className="fixed w-full z-50 transition-all duration-500"
     >
-      <div className="container">
+      <div className="container px-4 sm:px-6">
         <motion.nav 
           style={{ 
             padding: navPadding,
@@ -59,7 +59,7 @@ const Header = () => {
           </NavLink>
 
           {/* Desktop Menu */}
-          <ul className="hidden md:flex items-center gap-8 lg:gap-12 ml-auto mr-6 lg:mr-12">
+          <ul className="hidden md:flex items-center gap-8 lg:gap-12 ml-auto mr-10 lg:mr-16">
             {navLinks.map((link) => (
               <li key={link.name} className="list-none">
                 <NavLink 
@@ -78,47 +78,51 @@ const Header = () => {
             ))}
           </ul>
 
-          <div className="hidden md:block">
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn btn-primary shadow-lg"
-            >
-              Support Us
-            </motion.button>
+          <div className="hidden md:block ml-4">
+            <NavLink to="/donate">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn btn-primary shadow-lg"
+              >
+                Support Us
+              </motion.button>
+            </NavLink>
           </div>
-
-          {/* Mobile Toggle */}
-          <button className="md:hidden text-primary p-2" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
         </motion.nav>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div 
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="md:hidden mt-4 glass p-10 flex flex-col gap-8 rounded-3xl"
-            >
-              {navLinks.map((link) => (
-                <NavLink 
-                  key={link.name}
-                  to={link.path} 
-                  onClick={() => setIsOpen(false)}
-                  className="text-xs font-bold uppercase tracking-widest text-text-muted hover:text-primary transition-colors text-center"
-                >
-                  {link.name}
-                </NavLink>
-              ))}
-              <button className="btn btn-primary w-full py-4 text-[10px] uppercase tracking-widest">Support Us</button>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="md:hidden fixed top-24 left-4 right-4 glass p-6 sm:p-8 flex flex-col gap-4 sm:gap-6 rounded-2xl z-50"
+          >
+            {navLinks.map((link) => (
+              <NavLink 
+                key={link.name}
+                to={link.path} 
+                onClick={() => setIsOpen(false)}
+                className="text-xs sm:text-sm font-bold uppercase tracking-widest text-text-muted hover:text-primary transition-colors text-center py-2"
+              >
+                {link.name}
+              </NavLink>
+            ))}
+            <div className="border-t border-primary/20 my-2"></div>
+            <NavLink 
+              to="/donate"
+              onClick={() => setIsOpen(false)}
+              className="w-full"
+            >
+              <button className="btn btn-primary w-full py-3 sm:py-4 text-[10px] sm:text-xs uppercase tracking-widest">Support Us</button>
+            </NavLink>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 };
