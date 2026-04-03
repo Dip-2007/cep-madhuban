@@ -722,3 +722,559 @@ h6 {
   z-index: -1;
   pointer-events: none;
 }
+
+/* ===== MOBILE RESPONSIVE STYLES ===== */
+
+/* Extra Small Screens (Mobile) - 320px to 480px */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .section-padding {
+    padding: 3rem 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0 -0.5rem;
+  }
+
+  /* Text sizes for mobile */
+  .text-4xl {
+    font-size: 1.875rem;
+  }
+
+  .text-5xl {
+    font-size: 2.25rem;
+  }
+
+  .text-7xl {
+    font-size: 2.5rem;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.6rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Spacing adjustments */
+  .gap-4 {
+    gap: 0.5rem;
+  }
+
+  .gap-6 {
+    gap: 0.75rem;
+  }
+
+  .gap-8 {
+    gap: 1rem;
+  }
+
+  .gap-12 {
+    gap: 1.5rem;
+  }
+
+  .gap-16 {
+    gap: 2rem;
+  }
+
+  .mb-8 {
+    margin-bottom: 1.25rem;
+  }
+
+  .mb-12 {
+    margin-bottom: 1.5rem;
+  }
+
+  .mb-16 {
+    margin-bottom: 2.5rem;
+  }
+
+  .mb-20 {
+    margin-bottom: 3rem;
+  }
+
+  .mb-32 {
+    margin-bottom: 4rem;
+  }
+
+  .mb-40 {
+    margin-bottom: 5rem;
+  }
+
+  .pt-40 {
+    padding-top: 5rem;
+  }
+
+  .pt-32 {
+    padding-top: 4rem;
+  }
+
+  .pb-32 {
+    padding-bottom: 4rem;
+  }
+
+  .p-8 {
+    padding: 1.25rem;
+  }
+
+  .p-10 {
+    padding: 1.5rem;
+  }
+
+  .p-12 {
+    padding: 2rem;
+  }
+
+  .px-8 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Hero height */
+  .h-screen {
+    height: auto;
+    min-height: 60vh;
+  }
+
+  /* Blobs */
+  .blob {
+    width: 250px;
+    height: 250px;
+    filter: blur(60px);
+    opacity: 0.15;
+  }
+
+  /* Grid columns */
+  .grid-cols-2 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-2,
+  .md\:grid-cols-3,
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-12 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .md\:col-span-3,
+  .md\:col-span-4,
+  .md\:col-span-5,
+  .md\:col-span-7,
+  .md\:col-span-8,
+  .lg\:col-span-5,
+  .lg\:col-span-7 {
+    grid-column: span 1 / span 1;
+  }
+
+  /* Hide elements on mobile */
+  .hidden.sm\:block {
+    display: none;
+  }
+
+  .lg\:block {
+    display: none;
+  }
+
+  /* Map height */
+  .h-\[500px\] {
+    height: 300px;
+  }
+
+  /* Text sizing */
+  .text-lg {
+    font-size: 1rem;
+  }
+
+  .text-xl {
+    font-size: 1.125rem;
+  }
+
+  .text-3xl {
+    font-size: 1.5rem;
+  }
+
+  /* Logo sizing */
+  .w-12 {
+    width: 2.5rem;
+  }
+
+  .h-12 {
+    height: 2.5rem;
+  }
+
+  /* Rounded elements */
+  .rounded-2xl {
+    border-radius: 1rem;
+  }
+
+  .rounded-3xl {
+    border-radius: 1.25rem;
+  }
+
+  /* Gallery grid */
+  .grid.grid-cols-2 {
+    gap: 0.5rem;
+  }
+
+  .md\:gap-4 {
+    gap: 0.5rem;
+  }
+
+  .md\:gap-8 {
+    gap: 1rem;
+  }
+}
+
+/* Small Screens (Tablets Portrait) - 481px to 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  .section-padding {
+    padding: 4rem 0;
+  }
+
+  .text-4xl {
+    font-size: 2.5rem;
+  }
+
+  .text-5xl {
+    font-size: 2.75rem;
+  }
+
+  .text-7xl {
+    font-size: 3rem;
+  }
+
+  .btn {
+    padding: 0.9rem 1.8rem;
+    font-size: 0.65rem;
+  }
+
+  .gap-8 {
+    gap: 1.25rem;
+  }
+
+  .gap-12 {
+    gap: 2rem;
+  }
+
+  .gap-16 {
+    gap: 2.5rem;
+  }
+
+  .mb-12 {
+    margin-bottom: 2rem;
+  }
+
+  .mb-16 {
+    margin-bottom: 3rem;
+  }
+
+  .mb-20 {
+    margin-bottom: 4rem;
+  }
+
+  .mb-32 {
+    margin-bottom: 6rem;
+  }
+
+  .mb-40 {
+    margin-bottom: 7rem;
+  }
+
+  .pt-40 {
+    padding-top: 6rem;
+  }
+
+  .pt-32 {
+    padding-top: 5rem;
+  }
+
+  .pb-32 {
+    padding-bottom: 5rem;
+  }
+
+  .p-8 {
+    padding: 1.5rem;
+  }
+
+  .p-10 {
+    padding: 2rem;
+  }
+
+  .h-screen {
+    min-height: 70vh;
+  }
+
+  .blob {
+    width: 350px;
+    height: 350px;
+    filter: blur(70px);
+    opacity: 0.2;
+  }
+
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-3,
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-12 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:col-span-3,
+  .md\:col-span-4 {
+    grid-column: span 2 / span 2;
+  }
+
+  .md\:col-span-5,
+  .md\:col-span-7 {
+    grid-column: span 2 / span 2;
+  }
+
+  .lg\:col-span-5,
+  .lg\:col-span-7 {
+    grid-column: span 2 / span 2;
+  }
+
+  .h-\[500px\] {
+    height: 350px;
+  }
+
+  .text-xl {
+    font-size: 1.125rem;
+  }
+
+  .text-2xl {
+    font-size: 1.25rem;
+  }
+
+  .text-3xl {
+    font-size: 1.75rem;
+  }
+}
+
+/* Medium Screens and Up (Tablets & Desktops) - 769px and above */
+@media (min-width: 769px) {
+  .container {
+    padding: 0 2rem;
+  }
+
+  .section-padding {
+    padding: 8rem 0;
+  }
+
+  .text-4xl {
+    font-size: 2.25rem;
+  }
+
+  .text-5xl {
+    font-size: 3rem;
+  }
+
+  .text-7xl {
+    font-size: 4.5rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+  }
+
+  .md\:text-5xl {
+    font-size: 3rem;
+  }
+
+  .md\:text-7xl {
+    font-size: 4.5rem;
+  }
+
+  .mb-32 {
+    margin-bottom: 8rem;
+  }
+
+  .mb-40 {
+    margin-bottom: 10rem;
+  }
+
+  .pt-40 {
+    padding-top: 10rem;
+  }
+
+  .pt-32 {
+    padding-top: 8rem;
+  }
+
+  .pb-32 {
+    padding-bottom: 8rem;
+  }
+
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .md\:col-span-3 {
+    grid-column: span 3 / span 3;
+  }
+
+  .md\:col-span-4 {
+    grid-column: span 4 / span 4;
+  }
+
+  .md\:col-span-5 {
+    grid-column: span 5 / span 5;
+  }
+
+  .md\:col-span-7 {
+    grid-column: span 7 / span 7;
+  }
+
+  .lg\:col-span-5 {
+    grid-column: span 5 / span 5;
+  }
+
+  .lg\:col-span-7 {
+    grid-column: span 7 / span 7;
+  }
+
+  .h-\[500px\] {
+    height: 500px;
+  }
+}
+
+/* Responsive Utilities */
+@media (max-width: 640px) {
+  .sm\:hidden {
+    display: none;
+  }
+
+  .flex-col {
+    flex-direction: column;
+  }
+
+  .items-start {
+    align-items: flex-start;
+  }
+
+  .justify-start {
+    justify-content: flex-start;
+  }
+
+  /* Hide overflow content */
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* Improved Touch Targets for Mobile */
+@media (max-width: 768px) {
+  .btn {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  button {
+    min-height: 45px;
+  }
+
+  a {
+    display: inline-block;
+    padding: 0.25rem;
+  }
+}
+
+/* Landscape Mobile Adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .h-screen {
+    min-height: auto;
+    height: 100vh;
+  }
+
+  .section-padding {
+    padding: 2rem 0;
+  }
+
+  .pt-40 {
+    padding-top: 2rem;
+  }
+
+  .pb-32 {
+    padding-bottom: 2rem;
+  }
+}
+
+/* Very Small Phones - Extra tiny screens */
+@media (max-width: 370px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .text-4xl {
+    font-size: 1.5rem;
+  }
+
+  .text-5xl {
+    font-size: 1.75rem;
+  }
+
+  .text-7xl {
+    font-size: 2rem;
+  }
+
+  .btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.55rem;
+  }
+
+  .gap-4 {
+    gap: 0.25rem;
+  }
+
+  .gap-6 {
+    gap: 0.5rem;
+  }
+
+  .gap-8 {
+    gap: 0.75rem;
+  }
+
+  .mb-8 {
+    margin-bottom: 1rem;
+  }
+
+  .mb-12 {
+    margin-bottom: 1.25rem;
+  }
+
+  .p-8 {
+    padding: 1rem;
+  }
+
+  .text-lg {
+    font-size: 0.95rem;
+  }
+}

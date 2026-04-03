@@ -48,31 +48,31 @@ const Home = () => {
             animate="visible"
             className="max-w-4xl"
           >
-            <motion.span variants={itemVars} className="inline-block text-[10px] font-bold tracking-[0.3em] uppercase text-primary mb-8 bg-primary/5 px-6 py-2 rounded-full">
+            <motion.span variants={itemVars} className="inline-block text-[10px] font-bold tracking-[0.3em] uppercase text-primary mb-4 sm:mb-8 bg-primary/5 px-4 sm:px-6 py-2 rounded-full">
               Established since 2011
             </motion.span>
             
-            <motion.h1 variants={itemVars} className="text-4xl md:text-7xl mb-8 font-light text-text leading-[1.05]">
+            <motion.h1 variants={itemVars} className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl mb-6 sm:mb-8 font-light text-text leading-[1.05]">
               Empowering <br />
               <span className="italic font-normal text-primary">Every Ability</span> <br />
               with Pure Heart
             </motion.h1>
 
-            <motion.p variants={itemVars} className="text-lg md:text-xl text-muted mb-12 max-w-xl leading-relaxed font-light">
+            <motion.p variants={itemVars} className="text-base sm:text-lg md:text-xl text-muted mb-8 sm:mb-12 max-w-xl leading-relaxed font-light">
               We architecturalizing inclusion through dedicated education, rehabilitation, and compassionate welfare for the differently-abled in Pune.
             </motion.p>
 
-            <motion.div variants={itemVars} className="flex flex-wrap gap-6">
-              <Link to="/contact" className="btn btn-primary group px-10">
+            <motion.div variants={itemVars} className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-6">
+              <Link to="/contact" className="btn btn-primary group px-6 sm:px-10 text-[10px] sm:text-[11px]">
                 Join our mission
                 <motion.span 
                   animate={{ x: [0, 5, 0] }}
                   transition={{ repeat: Infinity, duration: 1.5 }}
                 >
-                  <ArrowRight size={14} className="ml-3" />
+                  <ArrowRight size={12} className="ml-2 sm:ml-3" />
                 </motion.span>
               </Link>
-              <Link to="/about" className="btn btn-outline px-10">
+              <Link to="/about" className="btn btn-outline px-6 sm:px-10 text-[10px] sm:text-[11px]">
                 Discover Story
               </Link>
             </motion.div>
@@ -85,7 +85,7 @@ const Home = () => {
           transition={{ delay: 1.5, duration: 1 }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 hidden md:flex"
         >
-          <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Scroll to explore</span>
+          {/* <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Scroll to explore</span> */}
           <motion.div 
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 2 }}
@@ -97,7 +97,7 @@ const Home = () => {
       {/* Philosophy Section */}
       <section className="section-padding relative bg-white">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
             {[
               { icon: Sparkles, title: 'Pure Intention', desc: 'Every action we take is driven by unconditional love and the pursuit of human dignity.' },
               { icon: Shield, title: 'Safe Sanctuary', desc: 'Providing a nurturing environment where every individual feels protected and valued.' },
@@ -106,13 +106,13 @@ const Home = () => {
               <motion.div 
                 key={i}
                 whileHover={{ y: -10 }}
-                className="text-center group p-8 rounded-2xl transition-all"
+                className="text-center group p-4 sm:p-8 rounded-2xl transition-all"
               >
-                <div className="w-20 h-20 mx-auto flex items-center justify-center bg-background rounded-full mb-8 group-hover:bg-primary/5 transition-colors">
-                  <item.icon className="text-primary" size={32} strokeWidth={1.5} />
+                <div className="w-16 sm:w-20 h-16 sm:h-20 mx-auto flex items-center justify-center bg-background rounded-full mb-4 sm:mb-8 group-hover:bg-primary/5 transition-colors">
+                  <item.icon className="text-primary" size={24} strokeWidth={1.5} />
                 </div>
-                <h3 className="text-xl mb-4 font-medium uppercase tracking-wider">{item.title}</h3>
-                <p className="text-muted font-light leading-relaxed">{item.desc}</p>
+                <h3 className="text-base sm:text-lg md:text-xl mb-3 sm:mb-4 font-medium uppercase tracking-wider">{item.title}</h3>
+                <p className="text-sm sm:text-base text-muted font-light leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -122,36 +122,28 @@ const Home = () => {
       {/* Featured Impact - Bento Layout */}
       <section className="section-padding bg-[#faf9f6]">
         <div className="container">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 gap-6 md:gap-8">
             <div className="max-w-2xl">
-              <span className="text-primary font-bold text-[10px] tracking-widest uppercase mb-4 block">Our Impact</span>
-              <h2 className="text-4xl md:text-5xl font-light leading-tight">Architecture of <span className="text-primary italic">Transformation</span></h2>
+              <span className="text-primary font-bold text-[10px] tracking-widest uppercase mb-3 md:mb-4 block">Our Impact</span>
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-light leading-tight">Architecture of <span className="text-primary italic">Transformation</span></h2>
             </div>
-            <Link to="/programs" className="text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-3 group">
-              Explore All Programs <div className="w-10 h-px bg-primary transition-all group-hover:w-16"></div>
+            <Link to="/programs" className="text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2 md:gap-3 group mt-4 md:mt-0">
+              Explore All Programs <div className="w-8 md:w-10 h-px bg-primary transition-all group-hover:w-12 md:group-hover:w-16"></div>
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 min-h-[600px]">
-             <motion.div 
-                whileHover={{ scale: 0.98 }}
-                className="md:col-span-8 glass rounded-2xl overflow-hidden relative group"
-             >
-                <img src="/assets/images/img-1.jpg" alt="Impact" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-12">
-                   <h3 className="text-white text-3xl font-light mb-2">Holistic Development</h3>
-                   <p className="text-white/70 font-light">Nurturing the physical, emotional, and social growth of every child.</p>
-                </div>
-             </motion.div>
-             <div className="md:col-span-4 grid grid-rows-2 gap-6">
-                <div className="glass p-10 flex flex-col justify-center bg-primary text-white rounded-2xl">
-                   <h4 className="text-5xl font-light mb-2">500+</h4>
-                   <p className="text-white/60 uppercase text-[10px] tracking-[0.2em]">Lives Transformed</p>
-                </div>
-                <div className="glass p-10 flex flex-col justify-center border-primary/20 rounded-2xl">
-                   <h4 className="text-5xl font-light text-primary mb-2">10+</h4>
-                   <p className="text-muted uppercase text-[10px] tracking-[0.2em]">Years of Dedication</p>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+             <div className="glass py-8 sm:py-10 px-6 sm:px-16 flex flex-col justify-center items-center bg-primary text-white rounded-2xl">
+                <h4 className="text-3xl sm:text-4xl md:text-5xl font-light mb-2">12+</h4>
+                <p className="text-white/60 uppercase text-[9px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em]">Years of Dedication</p>
+             </div>
+             <div className="glass py-8 sm:py-10 px-6 sm:px-16 flex flex-col justify-center items-center bg-primary text-white rounded-2xl">
+                <h4 className="text-3xl sm:text-4xl md:text-5xl font-light mb-2">500+</h4>
+                <p className="text-white/60 uppercase text-[9px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em]">Lives Transformed</p>
+             </div>
+             <div className="glass py-8 sm:py-10 px-6 sm:px-16 flex flex-col justify-center items-center bg-primary text-white rounded-2xl">
+                <h4 className="text-3xl sm:text-4xl md:text-5xl font-light mb-2">50+</h4>
+                <p className="text-white/60 uppercase text-[9px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em]">Families Supported</p>
              </div>
           </div>
         </div>

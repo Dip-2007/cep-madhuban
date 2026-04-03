@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send, Globe } from 'lucide-react';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+  const [loading, setLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
   const containerVars = {
     hidden: { opacity: 0 },
     visible: {
@@ -16,14 +26,67 @@ const Contact = () => {
     visible: { y: 0, opacity: 1, transition: { duration: 0.8 } }
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setSubmitStatus(null);
+
+    try {
+      // For now, this will just log the data
+      // When backend is ready, uncomment the API call below
+      console.log('Contact form submission:', formData);
+
+      // Uncomment this when backend is ready:
+      /*
+      const apiUrl = import.meta.env.VITE_API_URL || window.location.origin;
+      const response = await fetch(`${apiUrl}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setSubmitStatus({ type: 'success', message: data.message });
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      } else {
+        setSubmitStatus({ type: 'error', message: data.error });
+      }
+      */
+
+      // Temporary success message
+      setSubmitStatus({ 
+        type: 'success', 
+        message: 'Thank you for your message. We will get back to you soon!' 
+      });
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('Contact form error:', error);
+      setSubmitStatus({ 
+        type: 'error', 
+        message: 'Failed to send message. Please try again.' 
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="contact-v2 pt-40 pb-32">
       <div className="container">
-        <div className="max-w-4xl mb-32">
+        <div className="max-w-4xl mb-16 sm:mb-24 md:mb-32">
           <motion.span 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-10 block"
+            className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-6 sm:mb-10 block"
           >
             Engagement
           </motion.span>
@@ -31,7 +94,7 @@ const Contact = () => {
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 1 }}
-            className="text-4xl md:text-7xl font-light text-text leading-tight mb-12"
+            className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-light text-text leading-tight mb-6 sm:mb-12"
           >
             Initiate a <br />
             <span className="italic font-normal text-primary">Meaningful Dialogue</span>
@@ -40,61 +103,170 @@ const Contact = () => {
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-xl text-muted font-light max-w-2xl"
+            className="text-base sm:text-lg md:text-xl text-muted font-light max-w-2xl"
           >
             We believe every connection is a step towards a more inclusive tomorrow. Reach out to our dedicated team.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          {/* Details Column */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 md:gap-16 items-start">
+          {/* Contact Form Column */}
           <motion.div 
              variants={containerVars}
              initial="hidden"
              whileInView="visible"
              viewport={{ once: true }}
-             className="lg:col-span-5 space-y-12"
+             className="lg:col-span-5"
           >
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
+            <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+              {/* Name Field */}
+              <motion.div variants={itemVars} className="flex flex-col">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3">Your Name *</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  className="bg-white/50 border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm sm:text-base"
+                  placeholder="John Doe"
+                />
+              </motion.div>
+
+              {/* Email Field */}
+              <motion.div variants={itemVars} className="flex flex-col">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3">Email Address *</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className="bg-white/50 border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm sm:text-base"
+                  placeholder="john@example.com"
+                />
+              </motion.div>
+
+              {/* Phone Field */}
+              <motion.div variants={itemVars} className="flex flex-col">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3">Phone Number</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="bg-white/50 border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm sm:text-base"
+                  placeholder="9876543210"
+                />
+              </motion.div>
+
+              {/* Subject Field */}
+              <motion.div variants={itemVars} className="flex flex-col">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3">Subject</label>
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  className="bg-white/50 border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm sm:text-base"
+                  placeholder="How can we help?"
+                />
+              </motion.div>
+
+              {/* Message Field */}
+              <motion.div variants={itemVars} className="flex flex-col">
+                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3">Message *</label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows="5"
+                  className="bg-white/50 border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm sm:text-base resize-none"
+                  placeholder="Your message here..."
+                />
+              </motion.div>
+
+              {/* Submit Status Messages */}
+              {submitStatus && (
+                <motion.div 
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`p-4 rounded-xl text-sm ${
+                    submitStatus.type === 'success' 
+                      ? 'bg-green-50 text-green-800 border border-green-200' 
+                      : 'bg-red-50 text-red-800 border border-red-200'
+                  }`}
+                >
+                  {submitStatus.message}
+                </motion.div>
+              )}
+
+              {/* Submit Button */}
+              <motion.button
+                variants={itemVars}
+                type="submit"
+                disabled={loading}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="btn btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? 'Sending...' : 'Send Message'}
+                <Send size={14} className="ml-2" />
+              </motion.button>
+            </form>
+          </motion.div>
+
+          {/* Details & Map Column */}
+          <motion.div 
+             variants={containerVars}
+             initial="hidden"
+             whileInView="visible"
+             viewport={{ once: true }}
+             className="lg:col-span-7 space-y-8 sm:space-y-12"
+          >
+            {/* Contact Details */}
+            <div className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6 sm:gap-8">
                 {[
                    { icon: MapPin, label: 'Headquarters', detail: 'House No. 82, Jai Shankar Colony, Lane 03, Katraj, Pune - 411046' },
                    { icon: Phone, label: 'Direct Line', detail: '9028904787' },
                    { icon: Mail, label: 'Digital Mail', detail: 'madhuban02020@gmail.com' },
                    { icon: Clock, label: 'Engagement Hours', detail: 'Mon - Sat: 9:00 AM - 6:00 PM' }
                 ].map((item, i) => (
-                   <motion.div key={i} variants={itemVars} className="flex gap-8 group">
-                      <div className="w-14 h-14 rounded-full bg-white border border-slate-100 shadow-subtle flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                         <item.icon size={22} strokeWidth={1} />
+                   <motion.div key={i} variants={itemVars} className="flex gap-4 sm:gap-6 md:gap-8 group">
+                      <div className="w-12 sm:w-14 h-12 sm:h-14 rounded-full bg-white border border-slate-100 shadow-subtle flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                         <item.icon size={20} strokeWidth={1} />
                       </div>
-                      <div>
-                         <h4 className="text-[10px] font-bold uppercase tracking-widest text-primary mb-2">{item.label}</h4>
-                         <p className="text-text font-light leading-relaxed">{item.detail}</p>
+                      <div className="flex-1">
+                         <h4 className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary mb-1 sm:mb-2">{item.label}</h4>
+                         <p className="text-xs sm:text-sm md:text-base text-text font-light leading-relaxed">{item.detail}</p>
                       </div>
                    </motion.div>
                 ))}
-             </div>
-          </motion.div>
-
-          {/* Map Column */}
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.2 }}
-            viewport={{ once: true }}
-            className="lg:col-span-7"
-          >
-            <div className="glass rounded-3xl overflow-hidden h-[500px] shadow-premium relative group">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.123456789!2d73.858276!3d18.4441143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2ebeee0ddc91b%3A0xb4f4a6a625dccb3f!2sHouse%20No.%2082%2C%20Jai%20Shankar%20Colony%2C%20Katraj%2C%20Pune%2C%20Maharashtra%20411046!5e0!3m2!1sen!2sin!4v1695900000000" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen="" 
-                loading="lazy"
-                title="Madhuban NGO Location"
-                className="grayscale group-hover:grayscale-0 transition-all duration-1000"
-              ></iframe>
+              </div>
             </div>
+
+            {/* Map */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="glass rounded-2xl sm:rounded-3xl overflow-hidden h-64 sm:h-80 md:h-[350px] shadow-premium relative group">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.123456789!2d73.858276!3d18.4441143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2ebeee0ddc91b%3A0xb4f4a6a625dccb3f!2sHouse%20No.%2082%2C%20Jai%20Shankar%20Colony%2C%20Katraj%2C%20Pune%2C%20Maharashtra%20411046!5e0!3m2!1sen!2sin!4v1695900000000" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen="" 
+                  loading="lazy"
+                  title="Madhuban NGO Location"
+                  className="grayscale group-hover:grayscale-0 transition-all duration-1000"
+                ></iframe>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

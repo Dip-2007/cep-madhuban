@@ -42,13 +42,13 @@ const Header = () => {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="glass flex items-center justify-between rounded-2xl relative"
         >
-          <NavLink to="/" className="flex items-center gap-3 group">
+          <NavLink to="/" className="flex items-center gap-4 group">
             <motion.img 
               style={{ scale: logoScale }}
               whileHover={{ rotate: 5 }}
               src="/assets/images/madhuban_logo (2) (1).png" 
               alt="Logo" 
-              className="w-12 h-12 object-contain" 
+              className="w-12 h-12 object-contain rounded-full bg-transparent" 
             />
             <motion.span 
                style={{ scale: logoScale }}
@@ -59,13 +59,13 @@ const Header = () => {
           </NavLink>
 
           {/* Desktop Menu */}
-          <ul className="hidden md:flex items-center gap-12 ml-auto mr-12">
+          <ul className="hidden md:flex items-center gap-8 lg:gap-12 ml-auto mr-6 lg:mr-12">
             {navLinks.map((link) => (
               <li key={link.name} className="list-none">
                 <NavLink 
                   to={link.path} 
                   className={({ isActive }) => 
-                    `text-[11px] font-bold uppercase tracking-[0.25em] transition-all hover:text-primary relative group flex items-center ${isActive ? 'text-primary' : 'text-text-muted'}`
+                    `text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.25em] transition-all hover:text-primary relative group flex items-center ${isActive ? 'text-primary' : 'text-text-muted'}`
                   }
                 >
                   {link.name}

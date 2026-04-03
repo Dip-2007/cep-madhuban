@@ -33,11 +33,11 @@ const Gallery = () => {
   return (
     <div className="gallery-v2 pt-40 pb-32">
       <div className="container">
-        <div className="max-w-4xl mb-32">
+        <div className="max-w-4xl mb-16 sm:mb-24 md:mb-32">
           <motion.span 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-10 block"
+            className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-6 sm:mb-10 block"
           >
             Visual Chronicles
           </motion.span>
@@ -45,7 +45,7 @@ const Gallery = () => {
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 1 }}
-            className="text-4xl md:text-7xl font-light text-text leading-tight mb-12"
+            className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-light text-text leading-tight mb-6 sm:mb-12"
           >
             Moments of <br />
             <span className="italic font-normal text-primary">Pure Vitality</span>
@@ -54,32 +54,32 @@ const Gallery = () => {
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-xl text-muted font-light max-w-2xl"
+            className="text-base sm:text-lg md:text-xl text-muted font-light max-w-2xl"
           >
             A collection of stories told through the lens of those who experience life differently, yet beautifully.
           </motion.p>
         </div>
 
         {/* Video Highlights */}
-        <div className="mb-40">
-           <div className="flex items-center gap-6 mb-16">
-              <Youtube className="text-red-600" size={32} strokeWidth={1} />
-              <h2 className="text-2xl font-light uppercase tracking-widest">Video Highlights</h2>
-              <div className="h-px bg-slate-200 flex-grow"></div>
+        <div className="mb-24 md:mb-40">
+           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-12 md:mb-16">
+              <Youtube className="text-red-600 shrink-0" size={28} strokeWidth={1} />
+              <h2 className="text-xl sm:text-2xl font-light uppercase tracking-widest">Video Highlights</h2>
+              <div className="h-px bg-slate-200 flex-grow hidden sm:block"></div>
            </div>
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
               {videos.map((vid, i) => (
                 <motion.a 
                   key={i}
                   href={vid.url}
                   target="_blank"
                   whileHover={{ y: -5 }}
-                  className="glass p-8 rounded-2xl group flex flex-col justify-between min-h-[160px] hover:bg-white transition-all duration-500 hover:shadow-premium"
+                  className="glass p-6 sm:p-8 rounded-2xl group flex flex-col justify-between min-h-[140px] sm:min-h-[160px] hover:bg-white transition-all duration-500 hover:shadow-premium"
                 >
-                   <PlayCircle size={32} className="text-primary/20 group-hover:text-primary transition-colors mb-6" strokeWidth={1} />
-                   <div className="flex justify-between items-end">
-                      <span className="text-lg font-light group-hover:text-primary transition-colors">{vid.title}</span>
-                      <ExternalLink size={16} className="text-slate-300 group-hover:text-primary transition-colors" />
+                   <PlayCircle size={28} className="text-primary/20 group-hover:text-primary transition-colors mb-4 sm:mb-6" strokeWidth={1} />
+                   <div className="flex justify-between items-end gap-2">
+                      <span className="text-base sm:text-lg font-light group-hover:text-primary transition-colors line-clamp-2">{vid.title}</span>
+                      <ExternalLink size={14} className="text-slate-300 group-hover:text-primary transition-colors shrink-0" />
                    </div>
                 </motion.a>
               ))}
@@ -87,11 +87,11 @@ const Gallery = () => {
         </div>
 
         {/* Masonry-style Grid */}
-        <div className="flex items-center gap-6 mb-16">
-           <h2 className="text-2xl font-light uppercase tracking-widest">Photo Archive</h2>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-12 md:mb-16">
+           <h2 className="text-xl sm:text-2xl font-light uppercase tracking-widest">Photo Archive</h2>
            <div className="h-px bg-slate-200 flex-grow"></div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-6 lg:gap-8">
           {images.map((img, i) => (
             <motion.div 
               key={i}
