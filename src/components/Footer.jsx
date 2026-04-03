@@ -1,0 +1,110 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { Facebook, Instagram, Youtube, Heart, ArrowUpRight } from 'lucide-react';
+
+const Footer = () => {
+  const containerVars = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1, 
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 } 
+    }
+  };
+
+  const itemVars = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+  };
+
+  return (
+    <footer className="bg-[#080808] text-slate-500 pt-32 pb-16 relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
+      
+      <div className="container">
+        <motion.div 
+          variants={containerVars}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-12 gap-20 mb-32"
+        >
+          {/* Brand Concept */}
+          <motion.div variants={itemVars} className="md:col-span-5">
+            <div className="flex items-center gap-4 mb-10">
+              <img src="/assets/images/madhuban_logo (2) (1).png" alt="Logo" className="w-16 h-16 brightness-200" />
+              <div>
+                <h3 className="text-white text-2xl font-light tracking-[0.2em] uppercase">Madhuban</h3>
+                <span className="text-[10px] font-bold text-primary tracking-[0.4em] uppercase">Sanstha Pune</span>
+              </div>
+            </div>
+            <p className="text-lg font-light leading-relaxed mb-12 max-w-md text-slate-400">
+               Architecturing a legacy of inclusion and profound care for the extraordinary souls of Pune since 2011.
+            </p>
+            <div className="flex gap-8">
+              {[Facebook, Instagram, Youtube].map((Icon, i) => (
+                <motion.a 
+                  key={i}
+                  href="#"
+                  whileHover={{ scale: 1.1, color: '#d4af37' }}
+                  className="p-3 rounded-full border border-white/5 hover:border-primary/30 transition-all duration-500"
+                >
+                   <Icon size={18} strokeWidth={1} />
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Intelligent Links */}
+          <motion.div variants={itemVars} className="md:col-span-3">
+             <h4 className="text-white text-[10px] font-bold uppercase tracking-[0.4em] mb-12 opacity-50">Discovery</h4>
+             <ul className="space-y-6">
+                {['Home', 'About Us', 'Programs', 'Gallery', 'Contact'].map((item) => (
+                  <li key={item}>
+                    <Link 
+                      to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '')}`} 
+                      className="text-sm font-light hover:text-white transition-all flex items-center justify-between group"
+                    >
+                      {item}
+                      <ArrowUpRight size={14} className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />
+                    </Link>
+                  </li>
+                ))}
+             </ul>
+          </div>
+
+          {/* Social Impact CTA */}
+          <motion.div variants={itemVars} className="md:col-span-4">
+             <div className="glass p-10 rounded-3xl border-white/5 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-3xl group-hover:bg-primary/40 transition-all duration-700"></div>
+                <h4 className="text-white text-xl font-light mb-6 relative z-10">Ready to <span className="italic text-primary">Collaborate?</span></h4>
+                <p className="text-sm font-light mb-10 relative z-10 leading-relaxed text-slate-400">
+                  Whether you wish to volunteer or offer support, every contribution fuels our mission of transformation.
+                </p>
+                <Link to="/contact" className="btn bg-white text-black w-full hover:bg-slate-200 text-[10px] tracking-widest relative z-10 transition-all duration-500">
+                   Support the Mission
+                </Link>
+             </div>
+          </motion.div>
+        </motion.div>
+
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/5 text-[10px] font-bold tracking-[0.4em] uppercase"
+        >
+          <p className="mb-4 md:mb-0 text-slate-600">© {new Date().getFullYear()} Madhuban. Built with Purpose.</p>
+          <div className="flex gap-12 items-center">
+             <span className="flex items-center gap-3 text-slate-600">
+               In Service of Others <Heart size={12} className="text-primary fill-primary" />
+             </span>
+          </div>
+        </motion.div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
