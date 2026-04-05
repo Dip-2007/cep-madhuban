@@ -78,7 +78,7 @@ const Header = () => {
             ))}
           </ul>
 
-          <div className="hidden md:block ml-4">
+          <div className="hidden md:block ml-8 lg:ml-12">
             <NavLink to="/donate">
               <motion.button 
                 whileHover={{ scale: 1.05 }}
@@ -88,6 +88,31 @@ const Header = () => {
                 Support Us
               </motion.button>
             </NavLink>
+          </div>
+          {/* Mobile Menu Toggle */}
+          <div className="flex items-center gap-4 md:hidden">
+            <NavLink to="/donate">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn btn-primary text-[10px] px-4 py-2"
+              >
+                Support
+              </motion.button>
+            </NavLink>
+            <button 
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-xl hover:bg-white/20 transition-colors"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+            >
+              <motion.div
+                initial={false}
+                animate={{ rotate: isOpen ? 90 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {isOpen ? <X size={24} className="text-primary" /> : <Menu size={24} className="text-primary" />}
+              </motion.div>
+            </button>
           </div>
         </motion.nav>
       </div>

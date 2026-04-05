@@ -121,24 +121,24 @@ const Donate = () => {
             >
               <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-8">Bank Account</h2>
               
-              <div className="space-y-6">
+              <div className="space-y-8 md:space-y-10">
                 {/* Account Name */}
                 <div>
-                  <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-2">
+                  <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-3 sm:mb-4">
                     Account Name
                   </p>
-                  <div className="flex items-center justify-between bg-primary/5 rounded-lg p-3 border border-primary/10">
+                  <div className="flex items-center justify-between bg-primary/5 rounded-lg p-3 sm:p-4 border border-primary/10">
                     <span className="text-sm sm:text-base font-medium text-text">
                       {bankDetails.accountName}
                     </span>
                     <button
                       onClick={() => copyToClipboard(bankDetails.accountName, 'name')}
-                      className="ml-2 p-2 hover:bg-primary/10 rounded-lg transition-colors duration-300"
+                      className="ml-3 sm:ml-4 p-2 sm:p-2.5 hover:bg-primary/10 rounded-lg transition-colors duration-300"
                       title="Copy to clipboard"
                     >
                       <Copy 
                         className={`w-4 h-4 transition-colors duration-300 ${
-                          copied === 'name' ? 'text-green-500' : 'text-primary'
+                          copied === 'name' ? 'text-green-600' : 'text-slate-700'
                         }`}
                       />
                     </button>
@@ -147,41 +147,41 @@ const Donate = () => {
 
                 {/* Account Type */}
                 <div>
-                  <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-2">
+                  <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-3 sm:mb-4">
                     Account Type
                   </p>
-                  <p className="text-sm sm:text-base text-text font-medium bg-primary/5 rounded-lg p-3 border border-primary/10">
+                  <p className="text-sm sm:text-base text-text font-medium bg-primary/5 rounded-lg p-3 sm:p-4 border border-primary/10">
                     {bankDetails.accountType}
                   </p>
                 </div>
 
                 {/* Bank Name */}
                 <div>
-                  <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-2">
+                  <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-3 sm:mb-4">
                     Bank Name
                   </p>
-                  <p className="text-sm sm:text-base text-text font-medium bg-primary/5 rounded-lg p-3 border border-primary/10">
+                  <p className="text-sm sm:text-base text-text font-medium bg-primary/5 rounded-lg p-3 sm:p-4 border border-primary/10">
                     {bankDetails.bankName}
                   </p>
                 </div>
 
                 {/* Account Number */}
                 <div>
-                  <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-2">
+                  <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-3 sm:mb-4">
                     Account Number
                   </p>
-                  <div className="flex items-center justify-between bg-primary/5 rounded-lg p-3 border border-primary/10">
+                  <div className="flex items-center justify-between bg-primary/5 rounded-lg p-3 sm:p-4 border border-primary/10">
                     <code className="font-mono text-sm sm:text-base font-bold text-text">
                       {bankDetails.accountNumber}
                     </code>
                     <button
                       onClick={() => copyToClipboard(bankDetails.accountNumber, 'account')}
-                      className="ml-2 p-2 hover:bg-primary/10 rounded-lg transition-colors duration-300"
+                      className="ml-3 sm:ml-4 p-2 sm:p-2.5 hover:bg-primary/10 rounded-lg transition-colors duration-300"
                       title="Copy to clipboard"
                     >
                       <Copy 
                         className={`w-4 h-4 transition-colors duration-300 ${
-                          copied === 'account' ? 'text-green-500' : 'text-primary'
+                          copied === 'account' ? 'text-green-600' : 'text-slate-700'
                         }`}
                       />
                     </button>
@@ -190,21 +190,21 @@ const Donate = () => {
 
                 {/* IFSC Code */}
                 <div>
-                  <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-2">
+                  <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-3 sm:mb-4">
                     IFSC Code
                   </p>
-                  <div className="flex items-center justify-between bg-primary/5 rounded-lg p-3 border border-primary/10">
+                  <div className="flex items-center justify-between bg-primary/5 rounded-lg p-3 sm:p-4 border border-primary/10">
                     <code className="font-mono text-sm sm:text-base font-bold text-text">
                       {bankDetails.ifscCode}
                     </code>
                     <button
                       onClick={() => copyToClipboard(bankDetails.ifscCode, 'ifsc')}
-                      className="ml-2 p-2 hover:bg-primary/10 rounded-lg transition-colors duration-300"
+                      className="ml-3 sm:ml-4 p-2 sm:p-2.5 hover:bg-primary/10 rounded-lg transition-colors duration-300"
                       title="Copy to clipboard"
                     >
                       <Copy 
                         className={`w-4 h-4 transition-colors duration-300 ${
-                          copied === 'ifsc' ? 'text-green-500' : 'text-primary'
+                          copied === 'ifsc' ? 'text-green-600' : 'text-slate-700'
                         }`}
                       />
                     </button>

@@ -1,9 +1,24 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Heart, Sparkles, Shield, Compass } from 'lucide-react';
+import { ArrowRight, Heart, Sparkles, Shield, Compass, Loader2 } from 'lucide-react';
+import { useWebsiteContent } from '../hooks/useWebsiteContent';
 
 const Home = () => {
+  const { content, isLoading } = useWebsiteContent();
+  
+  // Show loading state while content is loading
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-cream flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 text-primary animate-spin mx-auto mb-4" />
+          <p className="text-muted">Loading content...</p>
+        </div>
+      </div>
+    );
+  }
+  
   const containerVars = {
     hidden: { opacity: 0 },
     visible: {
@@ -48,22 +63,20 @@ const Home = () => {
             animate="visible"
             className="max-w-4xl"
           >
-            <motion.span variants={itemVars} className="inline-block text-[10px] font-bold tracking-[0.3em] uppercase text-primary mb-4 sm:mb-8 bg-primary/5 px-4 sm:px-6 py-2 rounded-full">
+            <motion.span variants={itemVars} className="inline-block text-tiny font-bold tracking-widest-md uppercase text-primary mb-4 sm:mb-8 bg-primary-soft px-4 sm:px-6 py-2 rounded-full">
               Established since 2011
             </motion.span>
             
-            <motion.h1 variants={itemVars} className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl mb-6 sm:mb-8 font-light text-text leading-[1.05]">
-              Empowering <br />
-              <span className="italic font-normal text-primary">Every Ability</span> <br />
-              with Pure Heart
+            <motion.h1 variants={itemVars} className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl mb-6 sm:mb-8 font-light text-text leading-tightest">
+              {content?.home?.hero?.title || 'Empowering Every Ability with Pure Heart'}
             </motion.h1>
 
             <motion.p variants={itemVars} className="text-base sm:text-lg md:text-xl text-muted mb-8 sm:mb-12 max-w-xl leading-relaxed font-light">
-              We architecturalizing inclusion through dedicated education, rehabilitation, and compassionate welfare for the differently-abled in Pune.
+              {content?.home?.hero?.description || 'We architecturalizing inclusion through dedicated education, rehabilitation, and compassionate welfare for the differently-abled in Pune.'}
             </motion.p>
 
             <motion.div variants={itemVars} className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-6">
-              <Link to="/contact" className="btn btn-primary group px-6 sm:px-10 text-[10px] sm:text-[11px]">
+              <Link to="/contact" className="btn btn-primary group px-6 sm:px-10 text-tiny sm:text-xs-plus">
                 Join our mission
                 <motion.span 
                   animate={{ x: [0, 5, 0] }}
@@ -72,7 +85,7 @@ const Home = () => {
                   <ArrowRight size={12} className="ml-2 sm:ml-3" />
                 </motion.span>
               </Link>
-              <Link to="/about" className="btn btn-outline px-6 sm:px-10 text-[10px] sm:text-[11px]">
+              <Link to="/about" className="btn btn-outline px-6 sm:px-10 text-tiny sm:text-xs-plus">
                 Discover Story
               </Link>
             </motion.div>
@@ -120,12 +133,12 @@ const Home = () => {
       </section>
 
       {/* Featured Impact - Bento Layout */}
-      <section className="section-padding bg-[#faf9f6]">
+      <section className="section-padding bg-cream">
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 gap-6 md:gap-8">
             <div className="max-w-2xl">
               <span className="text-primary font-bold text-[10px] tracking-widest uppercase mb-3 md:mb-4 block">Our Impact</span>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-light leading-tight">Architecture of <span className="text-primary italic">Transformation</span></h2>
+              <h2 className="text-xl sm:text-4xl md:text-5xl font-light leading-tight">Architecture of <span className="text-primary italic">Transformation</span></h2>
             </div>
             <Link to="/programs" className="text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2 md:gap-3 group mt-4 md:mt-0">
               Explore All Programs <div className="w-8 md:w-10 h-px bg-primary transition-all group-hover:w-12 md:group-hover:w-16"></div>
@@ -135,15 +148,15 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
              <div className="glass py-8 sm:py-10 px-6 sm:px-16 flex flex-col justify-center items-center bg-primary text-white rounded-2xl">
                 <h4 className="text-3xl sm:text-4xl md:text-5xl font-light mb-2">12+</h4>
-                <p className="text-white/60 uppercase text-[9px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em]">Years of Dedication</p>
+                <p className="text-white/60 uppercase text-tiny sm:text-xs-plus tracking-widest-xs sm:tracking-widest-sm">Years of Dedication</p>
              </div>
              <div className="glass py-8 sm:py-10 px-6 sm:px-16 flex flex-col justify-center items-center bg-primary text-white rounded-2xl">
                 <h4 className="text-3xl sm:text-4xl md:text-5xl font-light mb-2">500+</h4>
-                <p className="text-white/60 uppercase text-[9px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em]">Lives Transformed</p>
+                <p className="text-white/60 uppercase text-tiny sm:text-xs-plus tracking-widest-xs sm:tracking-widest-sm">Lives Transformed</p>
              </div>
              <div className="glass py-8 sm:py-10 px-6 sm:px-16 flex flex-col justify-center items-center bg-primary text-white rounded-2xl">
                 <h4 className="text-3xl sm:text-4xl md:text-5xl font-light mb-2">50+</h4>
-                <p className="text-white/60 uppercase text-[9px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em]">Families Supported</p>
+                <p className="text-white/60 uppercase text-tiny sm:text-xs-plus tracking-widest-xs sm:tracking-widest-sm">Families Supported</p>
              </div>
           </div>
         </div>

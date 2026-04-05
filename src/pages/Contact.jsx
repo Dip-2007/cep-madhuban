@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send, Globe } from 'lucide-react';
+import { sanitizeInput } from '../utils/security';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -28,9 +29,10 @@ const Contact = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    const sanitizedValue = sanitizeInput(value);
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: sanitizedValue
     }));
   };
 
@@ -121,69 +123,74 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
               {/* Name Field */}
               <motion.div variants={itemVars} className="flex flex-col">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3">Your Name *</label>
+                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 sm:mb-4">Your Name *</label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="bg-white/50 border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm sm:text-base"
+                  className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 min-h-48px"
                   placeholder="John Doe"
+                  autoComplete="name"
                 />
               </motion.div>
 
               {/* Email Field */}
               <motion.div variants={itemVars} className="flex flex-col">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3">Email Address *</label>
+                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 sm:mb-4">Email Address *</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="bg-white/50 border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm sm:text-base"
+                  className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 min-h-48px"
                   placeholder="john@example.com"
+                  autoComplete="email"
                 />
               </motion.div>
 
               {/* Phone Field */}
               <motion.div variants={itemVars} className="flex flex-col">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3">Phone Number</label>
+                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 sm:mb-4">Phone Number</label>
                 <input
                   type="tel"
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="bg-white/50 border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm sm:text-base"
+                  className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 min-h-48px"
                   placeholder="9876543210"
+                  autoComplete="tel"
                 />
               </motion.div>
 
               {/* Subject Field */}
               <motion.div variants={itemVars} className="flex flex-col">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3">Subject</label>
+                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 sm:mb-4">Subject</label>
                 <input
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
-                  className="bg-white/50 border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm sm:text-base"
+                  className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 min-h-48px"
                   placeholder="How can we help?"
+                  autoComplete="off"
                 />
               </motion.div>
 
               {/* Message Field */}
               <motion.div variants={itemVars} className="flex flex-col">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3">Message *</label>
+                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 sm:mb-4">Message *</label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
                   required
                   rows="5"
-                  className="bg-white/50 border border-slate-200 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm sm:text-base resize-none"
+                  className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 resize-vertical min-h-32"
                   placeholder="Your message here..."
+                  autoComplete="off"
                 />
               </motion.div>
 
