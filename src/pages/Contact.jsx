@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send, Globe } from 'lucide-react';
 import { sanitizeInput } from '../utils/security';
+import { useTranslation } from '../contexts/LanguageContext';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -67,14 +69,14 @@ const Contact = () => {
       // Temporary success message
       setSubmitStatus({ 
         type: 'success', 
-        message: 'Thank you for your message. We will get back to you soon!' 
+        message: t('contact.form.success')
       });
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
     } catch (error) {
       console.error('Contact form error:', error);
       setSubmitStatus({ 
         type: 'error', 
-        message: 'Failed to send message. Please try again.' 
+        message: t('contact.form.error')
       });
     } finally {
       setLoading(false);
@@ -90,7 +92,7 @@ const Contact = () => {
             whileInView={{ opacity: 1 }}
             className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-6 sm:mb-10 block"
           >
-            Engagement
+            {t('contact.header.badge')}
           </motion.span>
           <motion.h1 
             initial={{ y: 30, opacity: 0 }}
@@ -98,8 +100,8 @@ const Contact = () => {
             transition={{ duration: 1 }}
             className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-light text-text leading-tight mb-6 sm:mb-12"
           >
-            Initiate a <br />
-            <span className="italic font-normal text-primary">Meaningful Dialogue</span>
+            {t('contact.header.titlePart1')} <br />
+            <span className="italic font-normal text-primary">{t('contact.header.titlePart2')}</span>
           </motion.h1>
           <motion.p 
             initial={{ y: 30, opacity: 0 }}
@@ -107,7 +109,7 @@ const Contact = () => {
             transition={{ duration: 1, delay: 0.2 }}
             className="text-base sm:text-lg md:text-xl text-muted font-light max-w-2xl"
           >
-            We believe every connection is a step towards a more inclusive tomorrow. Reach out to our dedicated team.
+            {t('contact.header.description')}
           </motion.p>
         </div>
 
@@ -123,7 +125,7 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
               {/* Name Field */}
               <motion.div variants={itemVars} className="flex flex-col">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 sm:mb-4">Your Name *</label>
+                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 sm:mb-4">{t('contact.form.name')}</label>
                 <input
                   type="text"
                   name="name"
@@ -131,14 +133,14 @@ const Contact = () => {
                   onChange={handleInputChange}
                   required
                   className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 min-h-48px"
-                  placeholder="John Doe"
+                  placeholder={t('contact.form.namePlaceholder')}
                   autoComplete="name"
                 />
               </motion.div>
 
               {/* Email Field */}
               <motion.div variants={itemVars} className="flex flex-col">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 sm:mb-4">Email Address *</label>
+                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 sm:mb-4">{t('contact.form.email')}</label>
                 <input
                   type="email"
                   name="email"
@@ -153,7 +155,7 @@ const Contact = () => {
 
               {/* Phone Field */}
               <motion.div variants={itemVars} className="flex flex-col">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 sm:mb-4">Phone Number</label>
+                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 sm:mb-4">{t('contact.form.phone')}</label>
                 <input
                   type="tel"
                   name="phone"
@@ -167,21 +169,21 @@ const Contact = () => {
 
               {/* Subject Field */}
               <motion.div variants={itemVars} className="flex flex-col">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 sm:mb-4">Subject</label>
+                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 sm:mb-4">{t('contact.form.subject')}</label>
                 <input
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
                   className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 min-h-48px"
-                  placeholder="How can we help?"
+                  placeholder={t('contact.form.subjectPlaceholder')}
                   autoComplete="off"
                 />
               </motion.div>
 
               {/* Message Field */}
               <motion.div variants={itemVars} className="flex flex-col">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 sm:mb-4">Message *</label>
+                <label className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3 sm:mb-4">{t('contact.form.message')}</label>
                 <textarea
                   name="message"
                   value={formData.message}
@@ -189,7 +191,7 @@ const Contact = () => {
                   required
                   rows="5"
                   className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 resize-vertical min-h-32"
-                  placeholder="Your message here..."
+                  placeholder={t('contact.form.messagePlaceholder')}
                   autoComplete="off"
                 />
               </motion.div>
@@ -218,7 +220,7 @@ const Contact = () => {
                 whileTap={{ scale: 0.98 }}
                 className="btn btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? 'Sending...' : 'Send Message'}
+                {loading ? t('contact.form.sending') : t('contact.form.sendBtn')}
                 <Send size={14} className="ml-2" />
               </motion.button>
             </form>
@@ -236,10 +238,10 @@ const Contact = () => {
             <div className="space-y-4 sm:space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6 sm:gap-8">
                 {[
-                   { icon: MapPin, label: 'Headquarters', detail: 'House No. 82, Jai Shankar Colony, Lane 03, Katraj, Pune - 411046' },
-                   { icon: Phone, label: 'Direct Line', detail: '9028904787' },
-                   { icon: Mail, label: 'Digital Mail', detail: 'madhuban02020@gmail.com' },
-                   { icon: Clock, label: 'Engagement Hours', detail: 'Mon - Sat: 9:00 AM - 6:00 PM' }
+                   { icon: MapPin, label: t('contact.details.hq'), detail: 'House No. 82, Jai Shankar Colony, Lane 03, Survey No. 67/3, Near Old Water Tank, Santosh Nagar, Katraj, Pune - 411046' },
+                   { icon: Phone, label: t('contact.details.tel'), detail: '9028904787' },
+                   { icon: Mail, label: t('contact.details.mail'), detail: 'madhuban02020@gmail.com' },
+                   { icon: Clock, label: t('contact.details.hours'), detail: t('contact.details.hoursTime') }
                 ].map((item, i) => (
                    <motion.div key={i} variants={itemVars} className="flex gap-4 sm:gap-6 md:gap-8 group">
                       <div className="w-12 sm:w-14 h-12 sm:h-14 rounded-full bg-white border border-slate-100 shadow-subtle flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-500">

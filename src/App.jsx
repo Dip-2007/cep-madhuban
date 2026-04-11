@@ -6,6 +6,8 @@ import { AuthProvider } from './contexts/AuthContext';
 import ErrorBoundary from './components/ErrorBoundary';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+import { LanguageProvider } from './contexts/LanguageContext';
 import Home from './pages/Home';
 import About from './pages/About';
 import Programs from './pages/Programs';
@@ -30,6 +32,7 @@ function AppLayout() {
 
   return (
     <div className="app-container">
+      <ScrollToTop />
       <Header />
       <main className="pt-24 md:pt-0">
         <Routes>
@@ -51,9 +54,11 @@ function App() {
     <Provider store={store}>
       <ErrorBoundary>
         <AuthProvider>
-          <Router>
-            <AppLayout />
-          </Router>
+          <LanguageProvider>
+            <Router>
+              <AppLayout />
+            </Router>
+          </LanguageProvider>
         </AuthProvider>
       </ErrorBoundary>
     </Provider>

@@ -2,8 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Youtube, ExternalLink, PlayCircle } from 'lucide-react';
 import { useWebsiteContent } from '../hooks/useWebsiteContent';
+import { useTranslation } from '../contexts/LanguageContext';
 
 const Gallery = () => {
+  const { t } = useTranslation();
   const { images: dynamicImages, videos: dynamicVideos } = useWebsiteContent();
 
   const staticImages = [
@@ -44,7 +46,7 @@ const Gallery = () => {
             whileInView={{ opacity: 1 }}
             className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-6 sm:mb-10 block"
           >
-            Visual Chronicles
+            {t('gallery.header.badge')}
           </motion.span>
           <motion.h1 
             initial={{ y: 30, opacity: 0 }}
@@ -52,8 +54,8 @@ const Gallery = () => {
             transition={{ duration: 1 }}
             className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-light text-text leading-tight mb-6 sm:mb-12"
           >
-            Moments of <br />
-            <span className="italic font-normal text-primary">Pure Vitality</span>
+            {t('gallery.header.titlePart1')} <br />
+            <span className="italic font-normal text-primary">{t('gallery.header.titlePart2')}</span>
           </motion.h1>
           <motion.p 
             initial={{ y: 30, opacity: 0 }}
@@ -61,7 +63,7 @@ const Gallery = () => {
             transition={{ duration: 1, delay: 0.2 }}
             className="text-base sm:text-lg md:text-xl text-muted font-light max-w-2xl"
           >
-            A collection of stories told through the lens of those who experience life differently, yet beautifully.
+            {t('gallery.header.description')}
           </motion.p>
         </div>
 
@@ -69,7 +71,7 @@ const Gallery = () => {
         <div className="mb-24 md:mb-40">
            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-12 md:mb-16">
               <Youtube className="text-red-600 shrink-0" size={28} strokeWidth={1} />
-              <h2 className="text-xl sm:text-2xl font-light uppercase tracking-widest">Video Highlights</h2>
+              <h2 className="text-xl sm:text-2xl font-light uppercase tracking-widest">{t('gallery.videoTitle')}</h2>
               <div className="h-px bg-slate-200 flex-grow hidden sm:block"></div>
            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
@@ -98,7 +100,7 @@ const Gallery = () => {
 
         {/* Masonry-style Grid */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-12 md:mb-16">
-           <h2 className="text-xl sm:text-2xl font-light uppercase tracking-widest">Photo Archive</h2>
+           <h2 className="text-xl sm:text-2xl font-light uppercase tracking-widest">{t('gallery.photoTitle')}</h2>
            <div className="h-px bg-slate-200 flex-grow"></div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4 md:gap-6 lg:gap-8">

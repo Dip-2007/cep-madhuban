@@ -19,6 +19,17 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+html.dark {
+  --primary: #10b981;
+  --primary-light: #34d399;
+  --background: #020617; /* extreme dark slate */
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --white: #0f172a; /* dark cards */
+  --glass: rgba(2, 6, 23, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.05);
+}
+
 /* Perfect Reset */
 * {
   margin: 0;
@@ -677,6 +688,22 @@ h6 {
 
 .bg-cream {
   background-color: #faf9f6;
+}
+
+html.dark .bg-cream {
+  background-color: #0f172a;
+}
+html.dark .text-slate-900 {
+  color: #f8fafc;
+}
+html.dark .text-slate-700 {
+  color: #e2e8f0;
+}
+html.dark .text-slate-600 {
+  color: #cbd5e1;
+}
+html.dark .text-slate-500 {
+  color: #94a3b8;
 }
 
 .bg-dark-soft {

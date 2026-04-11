@@ -2,47 +2,50 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Sun, Home, Activity, Stethoscope, BookOpen, Users, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from '../contexts/LanguageContext';
 
 const Programs = () => {
+  const { t } = useTranslation();
+  
   const programs = [
     { 
-      title: 'Special Care Sanctuary', 
-      desc: 'Nurturing daycare environment tailored for the unique developmental paths of intellectually disabled children.',
+      title: t('programs.items.1.title'), 
+      desc: t('programs.items.1.desc'),
       icon: Sun,
       color: 'text-amber-600',
       bg: 'bg-amber-50'
     },
     { 
-      title: 'Residential Living', 
-      desc: 'Architecturally designed separate hostels for boys and girls, providing a safe and dignified 24/7 home.',
+      title: t('programs.items.2.title'), 
+      desc: t('programs.items.2.desc'),
       icon: Home,
       color: 'text-blue-600',
       bg: 'bg-blue-50'
     },
     { 
-      title: 'Rehabilitation Journey', 
-      desc: 'Expert physiotherapy, speech therapy, and psychological counseling to empower physical and mental wellness.',
+      title: t('programs.items.3.title'), 
+      desc: t('programs.items.3.desc'),
       icon: Activity,
       color: 'text-emerald-600',
       bg: 'bg-emerald-50'
     },
     { 
-      title: 'Medical Assistance', 
-      desc: 'Direct access to specialized medical support and regular health monitoring for our residents.',
+      title: t('programs.items.4.title'), 
+      desc: t('programs.items.4.desc'),
       icon: Stethoscope,
       color: 'text-rose-600',
       bg: 'bg-rose-50'
     },
     { 
-      title: 'Adaptive Education', 
-      desc: 'Tailored learning programs that recognize diverse learning styles and celebrate every milestone.',
+      title: t('programs.items.5.title'), 
+      desc: t('programs.items.5.desc'),
       icon: BookOpen,
       color: 'text-violet-600',
       bg: 'bg-violet-50'
     },
     { 
-      title: 'Economic Empowerment', 
-      desc: 'Vocational training and workshops designed to equip adults with skills for independent living.',
+      title: t('programs.items.6.title'), 
+      desc: t('programs.items.6.desc'),
       icon: Users,
       color: 'text-indigo-600',
       bg: 'bg-indigo-50'
@@ -58,7 +61,7 @@ const Programs = () => {
             whileInView={{ opacity: 1 }}
             className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-6 sm:mb-10 block"
           >
-            Our Methodology
+            {t('programs.header.badge')}
           </motion.span>
           <motion.h1 
             initial={{ y: 30, opacity: 0 }}
@@ -66,8 +69,8 @@ const Programs = () => {
             transition={{ duration: 1 }}
             className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-light text-text leading-tight mb-6 sm:mb-12"
           >
-            Dedicated to <br />
-            <span className="italic font-normal text-primary">Harmonious Growth</span>
+            {t('programs.header.titlePart1')} <br />
+            <span className="italic font-normal text-primary">{t('programs.header.titlePart2')}</span>
           </motion.h1>
           <motion.p 
             initial={{ y: 30, opacity: 0 }}
@@ -75,7 +78,7 @@ const Programs = () => {
             transition={{ duration: 1, delay: 0.2 }}
             className="text-base sm:text-lg md:text-xl text-muted font-light max-w-2xl"
           >
-            A comprehensive suite of programs designed to nurture every dimension of the human experience.
+            {t('programs.header.description')}
           </motion.p>
         </div>
 
@@ -109,12 +112,12 @@ const Programs = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           className="mt-16 sm:mt-20 md:mt-32 glass p-8 sm:p-12 md:p-20 bg-primary rounded-2xl sm:rounded-3xl text-white text-center"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-6 sm:mb-8">Begin the Collaboration</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-6 sm:mb-8">{t('programs.cta.title')}</h2>
           <p className="text-white/60 mb-8 sm:mb-10 md:mb-12 max-w-xl mx-auto font-light text-sm sm:text-base md:text-lg">
-            Whether you seek care for a loved one or wish to join our mission as a volunteer, we welcome you.
+            {t('programs.cta.desc')}
           </p>
           <Link to="/contact" className="btn bg-white text-primary hover:bg-slate-50 border-none px-6 sm:px-8 md:px-12 text-xs sm:text-sm">
-            Speak with our team
+            {t('programs.cta.btn')}
           </Link>
         </motion.div>
       </div>

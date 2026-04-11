@@ -39,72 +39,66 @@ const Home = () => {
   return (
     <div className="home-v2">
       {/* Immersive Hero */}
-      <section className="relative h-screen flex items-center overflow-hidden">
-        <motion.div 
-          initial={{ scale: 1.1, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.15 }}
-          transition={{ duration: 2 }}
-          className="absolute inset-0 z-0"
-        >
-          <img 
-            src="/assets/images/img-5.png" 
-            alt="Hero Background" 
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-
-        <div className="blob" style={{ top: '-10%', right: '-10%' }}></div>
-        <div className="blob" style={{ bottom: '-10%', left: '-10%', background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)' }}></div>
-
+      <section className="relative pt-32 lg:pt-40 pb-16 lg:pb-32 overflow-hidden bg-background">
         <div className="container relative z-10">
-          <motion.div 
-            variants={containerVars}
-            initial="hidden"
-            animate="visible"
-            className="max-w-4xl"
-          >
-            <motion.span variants={itemVars} className="inline-block text-tiny font-bold tracking-widest-md uppercase text-primary mb-4 sm:mb-8 bg-primary-soft px-4 sm:px-6 py-2 rounded-full">
-              Established since 2011
-            </motion.span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             
-            <motion.h1 variants={itemVars} className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl mb-6 sm:mb-8 font-light text-text leading-tightest">
-              {content?.home?.hero?.title || 'Empowering Every Ability with Pure Heart'}
-            </motion.h1>
+            {/* Left Column: Text Content */}
+            <motion.div 
+              variants={containerVars}
+              initial="hidden"
+              animate="visible"
+              className="max-w-2xl text-center lg:text-left"
+            >
+              <motion.span variants={itemVars} className="inline-block text-tiny font-bold tracking-widest-md uppercase text-primary mb-4 sm:mb-6 bg-primary-soft px-4 sm:px-6 py-2 rounded-full">
+                २०११ पासून कार्यरत
+              </motion.span>
+              
+              <motion.h1 variants={itemVars} className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl mb-6 font-light text-text leading-tightest">
+                {content?.home?.hero?.title || 'प्रत्येक व्यक्तीला सक्षम करणे'}
+              </motion.h1>
 
-            <motion.p variants={itemVars} className="text-base sm:text-lg md:text-xl text-muted mb-8 sm:mb-12 max-w-xl leading-relaxed font-light">
-              {content?.home?.hero?.description || 'We architecturalizing inclusion through dedicated education, rehabilitation, and compassionate welfare for the differently-abled in Pune.'}
-            </motion.p>
+              <motion.p variants={itemVars} className="text-base sm:text-lg md:text-xl text-muted mb-8 lg:mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+                {content?.home?.hero?.description || 'आम्ही पुणे येथील दिव्यांगांसाठी समर्पित शिक्षण, पुनर्वसन आणि करुणामय कल्याणाद्वारे समावेशकता निर्माण करत आहोत.'}
+              </motion.p>
 
-            <motion.div variants={itemVars} className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-6">
-              <Link to="/contact" className="btn btn-primary group px-6 sm:px-10 text-tiny sm:text-xs-plus">
-                Join our mission
-                <motion.span 
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.5 }}
-                >
-                  <ArrowRight size={12} className="ml-2 sm:ml-3" />
-                </motion.span>
-              </Link>
-              <Link to="/about" className="btn btn-outline px-6 sm:px-10 text-tiny sm:text-xs-plus">
-                Discover Story
-              </Link>
+              <motion.div variants={itemVars} className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4">
+                <Link to="/contact" className="btn btn-primary group px-6 sm:px-8 text-tiny sm:text-xs-plus">
+                  आमच्या कार्यात सहभागी व्हा
+                  <motion.span 
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5 }}
+                  >
+                    <ArrowRight size={12} className="ml-2 sm:ml-3" />
+                  </motion.span>
+                </Link>
+                <Link to="/about" className="btn btn-outline px-6 sm:px-8 text-tiny sm:text-xs-plus border-slate-300 text-slate-700 hover:border-primary hover:text-white">
+                  आमची कथा वाचा
+                </Link>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        </div>
 
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 hidden md:flex"
-        >
-          {/* <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Scroll to explore</span> */}
-          <motion.div 
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            className="w-px h-12 bg-primary/20"
-          ></motion.div>
-        </motion.div>
+            {/* Right Column: Hero Image */}
+            <motion.div 
+              initial={{ x: 60, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full h-[50vh] sm:h-[60vh] lg:h-[75vh]"
+            >
+              {/* Subtle design blob underneath the image */}
+              <div className="absolute -inset-4 bg-primary-soft rounded-3xl md:rounded-[3rem] blur-xl opacity-70"></div>
+              
+              <div className="w-full h-full rounded-3xl md:rounded-[2.5rem] overflow-hidden shadow-2xl relative z-10">
+                 <img 
+                   src="/assets/images/img-5.png" 
+                   alt="Madhuban Impact" 
+                   className="w-full h-full object-cover rounded-3xl md:rounded-[2.5rem]"
+                 />
+              </div>
+            </motion.div>
+            
+          </div>
+        </div>
       </section>
 
       {/* Philosophy Section */}
@@ -112,9 +106,9 @@ const Home = () => {
         <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
             {[
-              { icon: Sparkles, title: 'Pure Intention', desc: 'Every action we take is driven by unconditional love and the pursuit of human dignity.' },
-              { icon: Shield, title: 'Safe Sanctuary', desc: 'Providing a nurturing environment where every individual feels protected and valued.' },
-              { icon: Compass, title: 'Guiding Path', desc: 'Navigating the complexities of rehabilitation with professional expertise and empathy.' },
+              { icon: Sparkles, title: 'शुद्ध हेतू', desc: 'आमची प्रत्येक कृती बिनशर्त प्रेमाने आणि मानवी प्रतिष्ठेच्या शोधाने प्रेरित आहे.' },
+              { icon: Shield, title: 'सुरक्षित आश्रयस्थान', desc: 'प्रत्येक व्यक्तीला सुरक्षित आणि मौल्यवान वाटेल असे पोषक वातावरण प्रदान करणे.' },
+              { icon: Compass, title: 'मार्गदर्शक पथ', desc: 'व्यावसायिक तज्ञांच्या मदतीने आणि सहानुभूतीने पुनर्वसनाचे कार्य करणे.' },
             ].map((item, i) => (
               <motion.div 
                 key={i}
@@ -137,26 +131,26 @@ const Home = () => {
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 gap-6 md:gap-8">
             <div className="max-w-2xl">
-              <span className="text-primary font-bold text-[10px] tracking-widest uppercase mb-3 md:mb-4 block">Our Impact</span>
-              <h2 className="text-xl sm:text-4xl md:text-5xl font-light leading-tight">Architecture of <span className="text-primary italic">Transformation</span></h2>
+              <span className="text-primary font-bold text-[10px] tracking-widest uppercase mb-3 md:mb-4 block">आमचा प्रभाव</span>
+              <h2 className="text-xl sm:text-4xl md:text-5xl font-light leading-tight">परिवर्तनाची <span className="text-primary italic">रूपरेषा</span></h2>
             </div>
             <Link to="/programs" className="text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2 md:gap-3 group mt-4 md:mt-0">
-              Explore All Programs <div className="w-8 md:w-10 h-px bg-primary transition-all group-hover:w-12 md:group-hover:w-16"></div>
+              सर्व कार्यक्रम पहा <div className="w-8 md:w-10 h-px bg-primary transition-all group-hover:w-12 md:group-hover:w-16"></div>
             </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
              <div className="glass py-8 sm:py-10 px-6 sm:px-16 flex flex-col justify-center items-center bg-primary text-white rounded-2xl">
                 <h4 className="text-3xl sm:text-4xl md:text-5xl font-light mb-2">12+</h4>
-                <p className="text-white/60 uppercase text-tiny sm:text-xs-plus tracking-widest-xs sm:tracking-widest-sm">Years of Dedication</p>
+                <p className="text-white/60 uppercase text-tiny sm:text-xs-plus tracking-widest-xs sm:tracking-widest-sm">वर्षांचे समर्पण</p>
              </div>
              <div className="glass py-8 sm:py-10 px-6 sm:px-16 flex flex-col justify-center items-center bg-primary text-white rounded-2xl">
                 <h4 className="text-3xl sm:text-4xl md:text-5xl font-light mb-2">500+</h4>
-                <p className="text-white/60 uppercase text-tiny sm:text-xs-plus tracking-widest-xs sm:tracking-widest-sm">Lives Transformed</p>
+                <p className="text-white/60 uppercase text-tiny sm:text-xs-plus tracking-widest-xs sm:tracking-widest-sm">बदललेले जीवन</p>
              </div>
              <div className="glass py-8 sm:py-10 px-6 sm:px-16 flex flex-col justify-center items-center bg-primary text-white rounded-2xl">
                 <h4 className="text-3xl sm:text-4xl md:text-5xl font-light mb-2">50+</h4>
-                <p className="text-white/60 uppercase text-tiny sm:text-xs-plus tracking-widest-xs sm:tracking-widest-sm">Families Supported</p>
+                <p className="text-white/60 uppercase text-tiny sm:text-xs-plus tracking-widest-xs sm:tracking-widest-sm">मदत केलेली कुटुंबे</p>
              </div>
           </div>
         </div>

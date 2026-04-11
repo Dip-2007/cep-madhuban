@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Copy, Heart } from 'lucide-react';
+import { useTranslation } from '../contexts/LanguageContext';
 
 const Donate = () => {
+  const { t } = useTranslation();
   const [copied, setCopied] = React.useState(null);
 
   const fadeInUp = {
@@ -17,12 +19,12 @@ const Donate = () => {
   };
 
   const bankDetails = {
-    accountName: 'Madhuban M.R. AND C.P. Sonatha, Pune',
+    accountName: 'Madhuban M.R. And C.P.Sanstha, Pune',
     accountType: 'Current Account',
     bankName: 'State Bank of India',
-    accountNumber: '39153359164',
+    accountNumber: '39153659164',
     ifscCode: 'SBIN0000454',
-    gpayNumber: '90289094787'
+    gpayNumber: '9028904787'
   };
 
   return (
@@ -39,20 +41,20 @@ const Donate = () => {
             variants={fadeInUp} 
             className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-6 sm:mb-10 block"
           >
-            Support Our Mission
+            {t('donate.header.badge')}
           </motion.span>
           <motion.h1 
             variants={fadeInUp} 
             className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-light text-text leading-tight mb-6 sm:mb-12"
           >
-            Donate<br />
-            <span className="italic font-normal text-primary">Make a Difference</span>
+            {t('donate.header.titlePart1')}<br />
+            <span className="italic font-normal text-primary">{t('donate.header.titlePart2')}</span>
           </motion.h1>
           <motion.p 
             variants={fadeInUp} 
             className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted font-light leading-relaxed max-w-3xl mx-auto"
           >
-            Your generous contribution helps us continue our mission and provide essential services to the differently-abled community.
+            {t('donate.header.description')}
           </motion.p>
         </motion.div>
 
@@ -67,7 +69,7 @@ const Donate = () => {
             className="mb-12 sm:mb-16 text-center"
           >
             <p className="text-base sm:text-lg text-muted leading-relaxed">
-              Your generous contribution helps us continue our mission and provide essential services. You can donate via G Pay or Bank Transfer.
+              {t('donate.description')}
             </p>
           </motion.div>
 
@@ -83,13 +85,13 @@ const Donate = () => {
             >
               <div className="flex items-center gap-3 mb-6">
                 <Heart className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl sm:text-3xl font-bold text-primary">G Pay</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-primary">{t('donate.gpay.title')}</h2>
               </div>
               
               <div className="space-y-4">
                 <div>
                   <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-3">
-                    G Pay Number
+                    {t('donate.gpay.label')}
                   </p>
                   <div className="flex items-center justify-between bg-primary/5 rounded-lg p-4 border border-primary/10">
                     <code className="font-mono text-sm sm:text-base font-bold text-text">
@@ -119,13 +121,13 @@ const Donate = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 sm:p-12 shadow-lg hover:shadow-xl transition-shadow duration-500 border border-gray-100"
             >
-              <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-8">Bank Account</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-8">{t('donate.bank.title')}</h2>
               
               <div className="space-y-8 md:space-y-10">
                 {/* Account Name */}
                 <div>
                   <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-3 sm:mb-4">
-                    Account Name
+                    {t('donate.bank.nameLabel')}
                   </p>
                   <div className="flex items-center justify-between bg-primary/5 rounded-lg p-3 sm:p-4 border border-primary/10">
                     <span className="text-sm sm:text-base font-medium text-text">
@@ -148,7 +150,7 @@ const Donate = () => {
                 {/* Account Type */}
                 <div>
                   <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-3 sm:mb-4">
-                    Account Type
+                    {t('donate.bank.typeLabel')}
                   </p>
                   <p className="text-sm sm:text-base text-text font-medium bg-primary/5 rounded-lg p-3 sm:p-4 border border-primary/10">
                     {bankDetails.accountType}
@@ -158,7 +160,7 @@ const Donate = () => {
                 {/* Bank Name */}
                 <div>
                   <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-3 sm:mb-4">
-                    Bank Name
+                    {t('donate.bank.bankLabel')}
                   </p>
                   <p className="text-sm sm:text-base text-text font-medium bg-primary/5 rounded-lg p-3 sm:p-4 border border-primary/10">
                     {bankDetails.bankName}
@@ -168,7 +170,7 @@ const Donate = () => {
                 {/* Account Number */}
                 <div>
                   <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-3 sm:mb-4">
-                    Account Number
+                    {t('donate.bank.numLabel')}
                   </p>
                   <div className="flex items-center justify-between bg-primary/5 rounded-lg p-3 sm:p-4 border border-primary/10">
                     <code className="font-mono text-sm sm:text-base font-bold text-text">
@@ -191,7 +193,7 @@ const Donate = () => {
                 {/* IFSC Code */}
                 <div>
                   <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-3 sm:mb-4">
-                    IFSC Code
+                    {t('donate.bank.ifscLabel')}
                   </p>
                   <div className="flex items-center justify-between bg-primary/5 rounded-lg p-3 sm:p-4 border border-primary/10">
                     <code className="font-mono text-sm sm:text-base font-bold text-text">
@@ -222,9 +224,9 @@ const Donate = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-16 sm:mt-20 p-8 sm:p-12 bg-gradient-to-r from-primary/5 to-primary/10 rounded-3xl border border-primary/20"
           >
-            <h3 className="text-xl sm:text-2xl font-bold text-primary mb-4">Thank You for Your Support!</h3>
+            <h3 className="text-xl sm:text-2xl font-bold text-primary mb-4">{t('donate.thankyou.title')}</h3>
             <p className="text-base sm:text-lg text-muted leading-relaxed">
-              Your generous contribution helps us continue our mission and provide essential services to the differently-abled community. Every donation makes a meaningful impact on the lives of those we serve.
+              {t('donate.thankyou.desc')}
             </p>
           </motion.div>
         </div>
