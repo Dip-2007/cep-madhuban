@@ -110,6 +110,20 @@ const Donate = () => {
                     </button>
                   </div>
                 </div>
+                
+                {/* QR Code Section */}
+                <div className="mt-8 pt-6 border-t border-gray-100 flex flex-col items-center">
+                  <p className="text-xs sm:text-sm font-semibold text-muted uppercase tracking-widest mb-4">
+                    Scan to Pay
+                  </p>
+                  <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 w-48 h-48 sm:w-56 sm:h-56 transition-transform duration-300 hover:scale-105">
+                    <img 
+                      src="/assets/images/payment-qr.jpg" 
+                      alt="UPI Payment QR Code" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
               </div>
             </motion.div>
 

@@ -40,18 +40,24 @@ const About = () => {
             className="md:col-span-5"
           >
             <div className="relative group">
-              <div className="absolute -inset-2 bg-primary/5 rounded-3xl -rotate-2 group-hover:rotate-0 transition-transform duration-700"></div>
-              <img 
-                src="/assets/images/about-placeholder.jpg" 
-                alt="Founder" 
-                className="relative w-full h-48 sm:h-64 md:h-80 object-cover rounded-2xl shadow-premium grayscale hover:grayscale-0 transition-all duration-1000" 
-              />
+              <div className="absolute -inset-4 bg-primary/5 rounded-3xl -rotate-2 group-hover:rotate-0 transition-transform duration-700"></div>
+              <div className="relative overflow-hidden rounded-2xl shadow-premium">
+                <img 
+                  src="/assets/images/founder-president.jpg" 
+                  alt={t('about.narrative.founderName')} 
+                  className="w-full h-auto min-h-[400px] sm:min-h-[500px] object-cover hover:scale-105 transition-transform duration-1000" 
+                />
+              </div>
             </div>
 
-            <div className="bg-white p-4 sm:p-6 md:p-10 shadow-premium rounded-xl">
-              <p className="text-primary font-bold text-[9px] sm:text-[10px] uppercase tracking-widest mb-2">{t('about.narrative.founderTitle')}</p>
-              <h4 className="text-lg sm:text-2xl font-light">{t('about.narrative.founderName')}</h4>
-              <p className="text-muted text-xs sm:text-sm italic">{t('about.narrative.founderRole')}</p>
+            <div className="mt-8 bg-white p-8 md:p-10 shadow-premium rounded-2xl border-l-[6px] border-primary relative overflow-hidden group hover:shadow-2xl transition-all duration-500">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl group-hover:bg-primary/10 transition-colors duration-500"></div>
+              <div className="flex items-center gap-2 mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary/60"></div>
+                <span className="text-primary font-bold text-[10px] uppercase tracking-widest-lg opacity-80">{t('about.narrative.founderTitle')}</span>
+              </div>
+              <h4 className="text-3xl sm:text-4xl font-light text-slate-900 mb-2 leading-tight tracking-tight">{t('about.narrative.founderName')}</h4>
+              <p className="text-primary/70 text-sm font-medium italic tracking-wide">{t('about.narrative.founderRole')}</p>
             </div>
           </motion.div>
 

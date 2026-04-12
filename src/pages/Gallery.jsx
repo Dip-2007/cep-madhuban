@@ -77,7 +77,7 @@ const Gallery = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
               {allVideos.map((vid, i) => {
                 const title = vid.title || vid.alt || 'Video';
-                const link = vid.type === 'youtube' ? vid.url : vid.url; // Or handle native video links if needed
+                const link = vid.type === 'youtube' ? vid.url : vid.url;
                 
                 return (
                   <motion.a 

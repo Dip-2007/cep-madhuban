@@ -1,13 +1,96 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Heart, Sparkles, Shield, Compass, Loader2 } from 'lucide-react';
 import { useWebsiteContent } from '../hooks/useWebsiteContent';
+import { useTranslation } from '../contexts/LanguageContext';
+
+/* ── Animated Counter Component ── */
+const AnimatedCounter = ({ end, suffix = '', duration = 2000 }) => {
+  const [count, setCount] = useState(0);
+  const started = useRef(false);
+
+  const startCounting = () => {
+    if (started.current) return;
+    started.current = true;
+    const startTime = Date.now();
+    const tick = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * end));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  return (
+    <motion.span
+      onViewportEnter={startCounting}
+      viewport={{ once: true, margin: '-50px' }}
+    >
+      {count}{suffix}
+    </motion.span>
+  );
+};
+
+/* ── Floating Particles ── */
+const FloatingParticles = () => {
+  const particles = Array.from({ length: 20 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 6 + 2,
+    duration: Math.random() * 8 + 6,
+    delay: Math.random() * 4,
+  }));
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          className="absolute rounded-full"
+          style={{
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            width: p.size,
+            height: p.size,
+            background: `rgba(6, 78, 59, ${0.08 + Math.random() * 0.12})`,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            x: [0, 15, -10, 0],
+            opacity: [0.3, 0.7, 0.3],
+          }}
+          transition={{
+            duration: p.duration,
+            delay: p.delay,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 const Home = () => {
   const { content, isLoading } = useWebsiteContent();
-  
-  // Show loading state while content is loading
+  const { t } = useTranslation();
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+
+  // Parallax values
+  const heroImageY = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const heroBlobScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const heroTextY = useTransform(scrollYProgress, [0, 1], [0, -30]);
+
+
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-cream flex items-center justify-center">
@@ -18,140 +101,281 @@ const Home = () => {
       </div>
     );
   }
-  
+
   const containerVars = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.3, delayChildren: 0.5 }
-    }
+      transition: { staggerChildren: 0.25, delayChildren: 0.3 },
+    },
   };
 
   const itemVars = {
-    hidden: { y: 30, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1, 
-      transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } 
-    }
+    hidden: { y: 40, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 1, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
+
+  const cardVars = {
+    hidden: { y: 60, opacity: 0, scale: 0.9 },
+    visible: (i) => ({
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.8, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] },
+    }),
   };
 
   return (
     <div className="home-v2">
-      {/* Immersive Hero */}
-      <section className="relative pt-32 lg:pt-40 pb-16 lg:pb-32 overflow-hidden bg-background">
+      {/* ── Immersive Hero ── */}
+      <section
+        ref={heroRef}
+        className="relative pt-32 lg:pt-40 pb-16 lg:pb-32 overflow-hidden bg-background"
+      >
+        <FloatingParticles />
+
+        {/* Animated gradient orbs */}
+        <motion.div
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            width: 500,
+            height: 500,
+            background: 'radial-gradient(circle, rgba(6,78,59,0.06) 0%, transparent 70%)',
+            top: '-10%',
+            right: '-5%',
+            scale: heroBlobScale,
+          }}
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+        />
+        <motion.div
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            width: 350,
+            height: 350,
+            background: 'radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 70%)',
+            bottom: '5%',
+            left: '-3%',
+          }}
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.5, 0.8, 0.5],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        />
+
         <div className="container relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-            
             {/* Left Column: Text Content */}
-            <motion.div 
+            <motion.div
               variants={containerVars}
               initial="hidden"
               animate="visible"
+              style={{ y: heroTextY }}
               className="max-w-2xl text-center lg:text-left"
             >
-              <motion.span variants={itemVars} className="inline-block text-tiny font-bold tracking-widest-md uppercase text-primary mb-4 sm:mb-6 bg-primary-soft px-4 sm:px-6 py-2 rounded-full">
-                २०११ पासून कार्यरत
+              <motion.span
+                variants={itemVars}
+                className="inline-block text-sm sm:text-base md:text-lg font-bold tracking-widest-md uppercase text-primary mb-4 sm:mb-6 bg-primary-soft px-6 sm:px-8 py-3 rounded-full"
+                whileHover={{ scale: 1.05 }}
+              >
+                {content?.home?.hero?.badge || t('home.hero.badge')}
               </motion.span>
-              
-              <motion.h1 variants={itemVars} className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl mb-6 font-light text-text leading-tightest">
-                {content?.home?.hero?.title || 'प्रत्येक व्यक्तीला सक्षम करणे'}
+
+              <motion.h1
+                variants={itemVars}
+                className="hero-title text-4xl sm:text-5xl md:text-6xl xl:text-7xl mb-6 font-light text-text leading-tightest"
+              >
+                {content?.home?.hero?.title || t('home.hero.title')}
               </motion.h1>
 
-              <motion.p variants={itemVars} className="text-base sm:text-lg md:text-xl text-muted mb-8 lg:mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
-                {content?.home?.hero?.description || 'आम्ही पुणे येथील दिव्यांगांसाठी समर्पित शिक्षण, पुनर्वसन आणि करुणामय कल्याणाद्वारे समावेशकता निर्माण करत आहोत.'}
+              <motion.p
+                variants={itemVars}
+                className="text-base sm:text-lg md:text-xl text-muted mb-8 lg:mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light"
+              >
+                {content?.home?.hero?.description || t('home.hero.description')}
               </motion.p>
 
-              <motion.div variants={itemVars} className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4">
-                <Link to="/contact" className="btn btn-primary group px-6 sm:px-8 text-tiny sm:text-xs-plus">
-                  आमच्या कार्यात सहभागी व्हा
-                  <motion.span 
+              <motion.div
+                variants={itemVars}
+                className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4"
+              >
+                <Link
+                  to="/contact"
+                  className="btn btn-primary group px-6 sm:px-8 text-tiny sm:text-xs-plus"
+                >
+                  {t('home.hero.join')}
+                  <motion.span
                     animate={{ x: [0, 5, 0] }}
                     transition={{ repeat: Infinity, duration: 1.5 }}
                   >
                     <ArrowRight size={12} className="ml-2 sm:ml-3" />
                   </motion.span>
                 </Link>
-                <Link to="/about" className="btn btn-outline px-6 sm:px-8 text-tiny sm:text-xs-plus border-slate-300 text-slate-700 hover:border-primary hover:text-white">
-                  आमची कथा वाचा
+                <Link
+                  to="/about"
+                  className="btn btn-outline px-6 sm:px-8 text-tiny sm:text-xs-plus border-slate-300 text-slate-700 hover:border-primary hover:text-white"
+                >
+                  {t('home.hero.discover')}
                 </Link>
               </motion.div>
             </motion.div>
 
-            {/* Right Column: Hero Image */}
-            <motion.div 
+            {/* Right Column: Hero Image with parallax */}
+            <motion.div
               initial={{ x: 60, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="relative w-full h-[50vh] sm:h-[60vh] lg:h-[75vh]"
+              style={{ y: heroImageY }}
             >
-              {/* Subtle design blob underneath the image */}
-              <div className="absolute -inset-4 bg-primary-soft rounded-3xl md:rounded-[3rem] blur-xl opacity-70"></div>
-              
+              {/* Animated blob underneath */}
+              <motion.div
+                className="absolute -inset-4 bg-primary-soft rounded-3xl md:rounded-[3rem] opacity-70"
+                style={{ filter: 'blur(24px)' }}
+                animate={{
+                  scale: [1, 1.03, 1],
+                  rotate: [0, 1, -1, 0],
+                }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+              />
+
               <div className="w-full h-full rounded-3xl md:rounded-[2.5rem] overflow-hidden shadow-2xl relative z-10">
-                 <img 
-                   src="/assets/images/img-5.png" 
-                   alt="Madhuban Impact" 
-                   className="w-full h-full object-cover rounded-3xl md:rounded-[2.5rem]"
-                 />
+                <motion.img
+                  src="/assets/images/img-5.png"
+                  alt="Madhuban Impact"
+                  className="w-full h-full object-cover rounded-3xl md:rounded-[2.5rem]"
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.6 }}
+                />
               </div>
             </motion.div>
-            
           </div>
         </div>
       </section>
 
-      {/* Philosophy Section */}
-      <section className="section-padding relative bg-white">
+      {/* ── Philosophy Section ── */}
+      <section className="section-padding relative bg-white overflow-hidden">
+        {/* Subtle decorative line */}
+        <motion.div
+          className="absolute top-0 left-1/2 w-px bg-slate-200"
+          initial={{ height: 0, x: '-50%' }}
+          whileInView={{ height: '100%' }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, ease: 'easeOut' }}
+          style={{ opacity: 0.5 }}
+        />
+
         <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
             {[
-              { icon: Sparkles, title: 'शुद्ध हेतू', desc: 'आमची प्रत्येक कृती बिनशर्त प्रेमाने आणि मानवी प्रतिष्ठेच्या शोधाने प्रेरित आहे.' },
-              { icon: Shield, title: 'सुरक्षित आश्रयस्थान', desc: 'प्रत्येक व्यक्तीला सुरक्षित आणि मौल्यवान वाटेल असे पोषक वातावरण प्रदान करणे.' },
-              { icon: Compass, title: 'मार्गदर्शक पथ', desc: 'व्यावसायिक तज्ञांच्या मदतीने आणि सहानुभूतीने पुनर्वसनाचे कार्य करणे.' },
+              {
+                icon: Sparkles,
+                title: t('home.philosophy.sparkles.title'),
+                desc: t('home.philosophy.sparkles.desc'),
+              },
+              {
+                icon: Shield,
+                title: t('home.philosophy.shield.title'),
+                desc: t('home.philosophy.shield.desc'),
+              },
+              {
+                icon: Compass,
+                title: t('home.philosophy.compass.title'),
+                desc: t('home.philosophy.compass.desc'),
+              },
             ].map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
-                whileHover={{ y: -10 }}
+                custom={i}
+                variants={cardVars}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-60px' }}
+                whileHover={{ y: -12, boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}
                 className="text-center group p-4 sm:p-8 rounded-2xl transition-all"
               >
-                <div className="w-16 sm:w-20 h-16 sm:h-20 mx-auto flex items-center justify-center bg-background rounded-full mb-4 sm:mb-8 group-hover:bg-primary/5 transition-colors">
+                <motion.div
+                  className="w-16 sm:w-20 h-16 sm:h-20 mx-auto flex items-center justify-center bg-background rounded-full mb-4 sm:mb-8 group-hover:bg-primary/5 transition-colors"
+                  whileHover={{ rotate: 10, scale: 1.1 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                >
                   <item.icon className="text-primary" size={24} strokeWidth={1.5} />
-                </div>
-                <h3 className="text-base sm:text-lg md:text-xl mb-3 sm:mb-4 font-medium uppercase tracking-wider">{item.title}</h3>
-                <p className="text-sm sm:text-base text-muted font-light leading-relaxed">{item.desc}</p>
+                </motion.div>
+                <h3 className="text-base sm:text-lg md:text-xl mb-3 sm:mb-4 font-medium uppercase tracking-wider">
+                  {item.title}
+                </h3>
+                <p className="text-sm sm:text-base text-muted font-light leading-relaxed">
+                  {item.desc}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Impact - Bento Layout */}
-      <section className="section-padding bg-cream">
+      {/* ── Featured Impact - Bento Layout with Counting Animation ── */}
+      <section className="section-padding bg-cream overflow-hidden">
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 gap-6 md:gap-8">
-            <div className="max-w-2xl">
-              <span className="text-primary font-bold text-[10px] tracking-widest uppercase mb-3 md:mb-4 block">आमचा प्रभाव</span>
-              <h2 className="text-xl sm:text-4xl md:text-5xl font-light leading-tight">परिवर्तनाची <span className="text-primary italic">रूपरेषा</span></h2>
-            </div>
-            <Link to="/programs" className="text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2 md:gap-3 group mt-4 md:mt-0">
-              सर्व कार्यक्रम पहा <div className="w-8 md:w-10 h-px bg-primary transition-all group-hover:w-12 md:group-hover:w-16"></div>
-            </Link>
+            <motion.div
+              className="max-w-2xl"
+              initial={{ x: -40, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="text-primary font-bold text-[10px] tracking-widest uppercase mb-3 md:mb-4 block">
+                {t('home.impact.label')}
+              </span>
+              <h2 className="text-xl sm:text-4xl md:text-5xl font-light leading-tight">
+                {t('home.impact.titlePart1')}{' '}
+                <span className="text-primary italic">{t('home.impact.titlePart2')}</span>
+              </h2>
+            </motion.div>
+            <motion.div
+              initial={{ x: 40, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <Link
+                to="/programs"
+                className="text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2 md:gap-3 group mt-4 md:mt-0"
+              >
+                {t('home.impact.explore')}{' '}
+                <div className="w-8 md:w-10 h-px bg-primary transition-all group-hover:w-12 md:group-hover:w-16"></div>
+              </Link>
+            </motion.div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-             <div className="glass py-8 sm:py-10 px-6 sm:px-16 flex flex-col justify-center items-center bg-primary text-white rounded-2xl">
-                <h4 className="text-3xl sm:text-4xl md:text-5xl font-light mb-2">12+</h4>
-                <p className="text-white/60 uppercase text-tiny sm:text-xs-plus tracking-widest-xs sm:tracking-widest-sm">वर्षांचे समर्पण</p>
-             </div>
-             <div className="glass py-8 sm:py-10 px-6 sm:px-16 flex flex-col justify-center items-center bg-primary text-white rounded-2xl">
-                <h4 className="text-3xl sm:text-4xl md:text-5xl font-light mb-2">500+</h4>
-                <p className="text-white/60 uppercase text-tiny sm:text-xs-plus tracking-widest-xs sm:tracking-widest-sm">बदललेले जीवन</p>
-             </div>
-             <div className="glass py-8 sm:py-10 px-6 sm:px-16 flex flex-col justify-center items-center bg-primary text-white rounded-2xl">
-                <h4 className="text-3xl sm:text-4xl md:text-5xl font-light mb-2">50+</h4>
-                <p className="text-white/60 uppercase text-tiny sm:text-xs-plus tracking-widest-xs sm:tracking-widest-sm">मदत केलेली कुटुंबे</p>
-             </div>
+            {[
+              { end: 12, suffix: '+', label: t('home.impact.years'), duration: 2000 },
+              { end: 500, suffix: '+', label: t('home.impact.lives'), duration: 2500 },
+              { end: 50, suffix: '+', label: t('home.impact.families'), duration: 1800 },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ y: 50, opacity: 0, scale: 0.95 }}
+                whileInView={{ y: 0, opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="glass py-8 sm:py-10 px-6 sm:px-16 flex flex-col justify-center items-center bg-primary text-white rounded-2xl cursor-default"
+              >
+                <h4 className="text-3xl sm:text-4xl md:text-5xl font-light mb-2">
+                  <AnimatedCounter end={item.end} suffix={item.suffix} duration={item.duration} />
+                </h4>
+                <p className="text-white/60 uppercase text-tiny sm:text-xs-plus tracking-widest-xs sm:tracking-widest-sm">
+                  {item.label}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

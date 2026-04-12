@@ -66,7 +66,7 @@ const Header = () => {
                style={{ scale: logoScale }}
                className="text-primary font-bold text-xl tracking-widest ml-1"
             >
-               मधुबन
+               {t('nav.madhuban')}
             </motion.span>
           </NavLink>
 
