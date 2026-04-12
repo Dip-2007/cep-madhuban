@@ -28,31 +28,31 @@ const Donate = () => {
   };
 
   return (
-    <div className="donate-page pt-40 pb-32">
+    <div className="donate-page pt-24 md:pt-40 pb-16 md:pb-32">
       <div className="container">
         {/* Header Section */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="max-w-4xl mb-32 text-center"
+          className="max-w-4xl mb-16 md:mb-32 text-center mx-auto"
         >
           <motion.span 
             variants={fadeInUp} 
-            className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-10 block"
+            className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-6 md:mb-10 block"
           >
             {t('donate.header.badge')}
           </motion.span>
           <motion.h1 
             variants={fadeInUp} 
-            className="text-7xl font-light text-text leading-tight mb-12"
+            className="text-5xl md:text-7xl font-light text-text leading-tight mb-8 md:mb-12"
           >
             {t('donate.header.titlePart1')}<br />
             <span className="italic font-normal text-primary">{t('donate.header.titlePart2')}</span>
           </motion.h1>
           <motion.p 
             variants={fadeInUp} 
-            className="text-2xl lg:text-3xl text-muted font-light leading-relaxed max-w-3xl mx-auto"
+            className="text-xl md:text-2xl lg:text-3xl text-muted font-light leading-relaxed max-w-3xl mx-auto"
           >
             {t('donate.header.description')}
           </motion.p>

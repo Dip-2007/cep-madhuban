@@ -64,7 +64,7 @@ const Header = () => {
             />
             <motion.span 
                style={{ scale: logoScale }}
-               className="text-primary font-bold text-xl tracking-widest ml-1"
+               className="text-primary font-bold text-xl tracking-widest ml-1 hidden sm:block"
             >
                {t('nav.madhuban')}
             </motion.span>
@@ -72,7 +72,7 @@ const Header = () => {
 
           {/* Desktop Menu */}
           {/* Desktop Menu */}
-          <ul className="flex items-center gap-6 xl:gap-8 ml-8 xl:ml-12 h-full">
+          <ul className="hidden lg:flex items-center gap-6 xl:gap-8 ml-8 xl:ml-12 h-full">
             {navLinks.map((link) => {
               const isActive = link.path === '/' ? location.pathname === '/' : location.pathname.startsWith(link.path);
               return (
@@ -101,35 +101,73 @@ const Header = () => {
             })}
           </ul>
 
-          <div className="flex items-center ml-auto gap-4">
+          <div className="flex items-center ml-auto gap-2 sm:gap-4">
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsDark(!isDark)}
-              className="flex items-center justify-center w-10 h-10 bg-white/50 hover:bg-white text-slate-700 transition-all rounded-full shadow-sm border border-slate-200"
+              className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-white/50 hover:bg-white text-slate-700 transition-all rounded-full shadow-sm border border-slate-200"
             >
-              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+              {isDark ? <Sun size={16} /> : <Moon size={16} />}
             </motion.button>
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={toggleLanguage}
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary to-primary-light text-white hover:shadow-xl transition-all font-bold text-xs tracking-widest rounded-full shadow-md border border-white/20"
+              className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-primary to-primary-light text-white hover:shadow-xl transition-all font-bold text-[10px] sm:text-xs tracking-widest rounded-full shadow-md border border-white/20"
             >
               <Languages size={14} className="opacity-90" />
               <span>{language === 'en' ? 'मराठी' : 'ENG'}</span>
             </motion.button>
-            <NavLink to="/donate">
+            <NavLink to="/donate" className="hidden sm:block">
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn btn-primary shadow-lg ml-2"
+                className="btn btn-primary shadow-lg ml-2 py-2 px-5 text-xs sm:text-sm"
               >
                 {t('nav.support')}
               </motion.button>
             </NavLink>
+            <button 
+              className="lg:hidden p-2 text-slate-700 bg-white/50 hover:bg-white rounded-full transition-colors focus:outline-none border border-slate-200 shadow-sm ml-1"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle Menu"
+            >
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
         </motion.nav>
+
+        {/* Mobile Menu Dropdown */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div 
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="lg:hidden absolute top-full left-4 right-4 mt-4 glass bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-3xl p-6 shadow-premium border border-white/40 flex flex-col gap-2 z-50 origin-top"
+            >
+              {navLinks.map((link) => {
+                const isActive = link.path === '/' ? location.pathname === '/' : location.pathname.startsWith(link.path);
+                return (
+                  <Link 
+                    key={link.name} 
+                    to={link.path} 
+                    onClick={() => setIsOpen(false)} 
+                    className={`px-6 py-4 text-base font-bold tracking-[0.1em] uppercase rounded-2xl transition-all flex items-center ${isActive ? 'bg-primary/10 text-primary' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
+              <div className="w-full h-px bg-slate-200 dark:bg-slate-700/50 my-4"></div>
+              <Link to="/donate" onClick={() => setIsOpen(false)} className="btn btn-primary w-full justify-center py-4 rounded-2xl shadow-lg">
+                {t('nav.support')}
+              </Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
     </motion.header>

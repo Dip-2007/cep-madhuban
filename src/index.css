@@ -1663,16 +1663,7 @@ video {
   }
 }
 
-/* Prevent horizontal squashing - Enforce Global PC View */
-@media (max-width: 1024px) {
-  html,
-  body {
-    overflow-x: auto;
-    min-width: 1024px;
-  }
-}
-
-
+/* Removed global PC lock to allow responsiveness */
 /* Enhanced Touch Targets */
 @media (hover: none) and (pointer: coarse) {
 

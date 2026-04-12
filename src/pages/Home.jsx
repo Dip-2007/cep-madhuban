@@ -188,7 +188,7 @@ const Home = () => {
 
               <motion.h1
                 variants={itemVars}
-                className="hero-title text-7xl mb-12 font-light text-text leading-tightest"
+                className="hero-title text-5xl sm:text-6xl lg:text-7xl mb-8 lg:mb-12 font-light text-text leading-tightest"
               >
                 {content?.home?.hero?.title || t('home.hero.title')}
               </motion.h1>

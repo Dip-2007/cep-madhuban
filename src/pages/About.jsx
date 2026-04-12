@@ -11,34 +11,34 @@ const About = () => {
   };
 
   return (
-    <div className="about-v2 pt-40 pb-32">
+    <div className="about-v2 pt-24 md:pt-40 pb-16 md:pb-32">
       <div className="container">
         {/* Header Section */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="max-w-4xl mb-32"
+          className="max-w-4xl mb-16 md:mb-32"
         >
           <motion.span variants={fadeInUp} className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-10 block">{t('about.header.badge')}</motion.span>
-          <motion.h1 variants={fadeInUp} className="text-7xl font-light text-text leading-tight mb-12">
+          <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-light text-text leading-tight mb-8 md:mb-12">
             {t('about.header.titlePart1')} <br />
             <span className="italic font-normal text-primary">{t('about.header.titlePart2')}</span>
           </motion.h1>
-          <motion.p variants={fadeInUp} className="text-2xl lg:text-3xl text-muted font-light leading-relaxed max-w-3xl">
+          <motion.p variants={fadeInUp} className="text-xl md:text-2xl lg:text-3xl text-muted font-light leading-relaxed max-w-3xl">
             {t('about.header.description')}
           </motion.p>
         </motion.div>
 
         {/* Narrative Section */}
-        <div className="overflow-x-auto overflow-y-hidden pb-8">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-24 items-start mb-40 min-w-[1024px]">
+        <div className="pb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-24 items-start mb-16 md:mb-40">
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.2 }}
               viewport={{ once: true }}
-              className="md:col-span-5 min-w-0"
+              className="lg:col-span-5 min-w-0"
             >
               <div className="relative group">
                 <div className="absolute -inset-4 bg-primary/5 rounded-3xl -rotate-2 group-hover:rotate-0 transition-transform duration-700"></div>
@@ -67,7 +67,7 @@ const About = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.2 }}
               viewport={{ once: true }}
-              className="md:col-span-7 space-y-8 sm:space-y-12 min-w-0"
+              className="lg:col-span-7 space-y-8 sm:space-y-12 min-w-0"
             >
               <div className="space-y-4 sm:space-y-6">
                 <h3 className="text-2xl sm:text-3xl font-light text-primary italic break-words">{t('about.narrative.missionTitle')}</h3>
@@ -98,12 +98,12 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5 }}
           viewport={{ once: true }}
-          className="text-center bg-primary text-white p-24 rounded-[3rem] relative overflow-hidden"
+          className="text-center bg-primary text-white p-12 md:p-24 rounded-[2rem] md:rounded-[3rem] relative overflow-hidden"
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
           <div className="relative z-10">
-            <h2 className="text-5xl font-light mb-10 leading-tight">{t('about.vision.titlePart1')} <span className="italic">{t('about.vision.titlePart2')}</span></h2>
-            <p className="text-3xl font-light italic leading-relaxed max-w-4xl mx-auto opacity-80">
+            <h2 className="text-3xl md:text-5xl font-light mb-6 md:mb-10 leading-tight">{t('about.vision.titlePart1')} <span className="italic">{t('about.vision.titlePart2')}</span></h2>
+            <p className="text-xl md:text-3xl font-light italic leading-relaxed max-w-4xl mx-auto opacity-80">
               {t('about.vision.desc')}
             </p>
           </div>
