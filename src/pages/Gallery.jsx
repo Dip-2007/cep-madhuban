@@ -38,13 +38,13 @@ const Gallery = () => {
   const allVideos = [...(dynamicVideos || []), ...staticVideos];
 
   return (
-    <div className="gallery-v2 pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32">
+    <div className="gallery-v2 pt-40 pb-32">
       <div className="container">
-        <div className="max-w-4xl mb-12 sm:mb-24 md:mb-32">
+        <div className="max-w-4xl mb-32">
           <motion.span 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-6 sm:mb-10 block"
+            className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-10 block"
           >
             {t('gallery.header.badge')}
           </motion.span>
@@ -52,7 +52,7 @@ const Gallery = () => {
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 1 }}
-            className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-light text-text leading-tight mb-6 sm:mb-12"
+            className="text-7xl font-light text-text leading-tight mb-12"
           >
             {t('gallery.header.titlePart1')} <br />
             <span className="italic font-normal text-primary">{t('gallery.header.titlePart2')}</span>
@@ -61,7 +61,7 @@ const Gallery = () => {
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-base sm:text-lg md:text-xl text-muted font-light max-w-2xl"
+            className="text-2xl lg:text-3xl text-muted font-light max-w-2xl"
           >
             {t('gallery.header.description')}
           </motion.p>
@@ -85,7 +85,7 @@ const Gallery = () => {
                     href={link}
                     target="_blank"
                     whileHover={{ y: -5 }}
-                    className="glass p-6 sm:p-8 rounded-2xl group flex flex-col justify-between min-h-[140px] sm:min-h-[160px] hover:bg-white transition-all duration-500 hover:shadow-premium"
+                    className="glass p-8 rounded-2xl group flex flex-col justify-between min-h-[160px] hover:bg-white transition-all duration-500 hover:shadow-premium"
                   >
                      <PlayCircle size={28} className="text-primary/20 group-hover:text-primary transition-colors mb-4 sm:mb-6" strokeWidth={1} />
                      <div className="flex justify-between items-end gap-2">

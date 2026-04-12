@@ -134,7 +134,7 @@ const Home = () => {
       {/* ── Immersive Hero ── */}
       <section
         ref={heroRef}
-        className="relative pt-32 lg:pt-40 pb-16 lg:pb-32 overflow-hidden bg-background"
+        className="relative pt-40 pb-32 overflow-hidden bg-background"
       >
         <FloatingParticles />
 
@@ -180,7 +180,7 @@ const Home = () => {
             >
               <motion.span
                 variants={itemVars}
-                className="inline-block text-sm sm:text-base md:text-lg font-bold tracking-widest-md uppercase text-primary mb-4 sm:mb-6 bg-primary-soft px-6 sm:px-8 py-3 rounded-full"
+                className="inline-block text-lg font-bold tracking-widest-md uppercase text-primary mb-10 bg-primary-soft px-8 py-3 rounded-full"
                 whileHover={{ scale: 1.05 }}
               >
                 {content?.home?.hero?.badge || t('home.hero.badge')}
@@ -188,25 +188,25 @@ const Home = () => {
 
               <motion.h1
                 variants={itemVars}
-                className="hero-title text-4xl sm:text-5xl md:text-6xl xl:text-7xl mb-6 font-light text-text leading-tightest"
+                className="hero-title text-7xl mb-12 font-light text-text leading-tightest"
               >
                 {content?.home?.hero?.title || t('home.hero.title')}
               </motion.h1>
 
               <motion.p
                 variants={itemVars}
-                className="text-base sm:text-lg md:text-xl text-muted mb-8 lg:mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light"
+                className="text-xl text-muted mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light"
               >
                 {content?.home?.hero?.description || t('home.hero.description')}
               </motion.p>
 
               <motion.div
                 variants={itemVars}
-                className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 mb-4 sm:mb-0"
+                className="flex justify-center lg:justify-start gap-6"
               >
                 <Link
                   to="/contact"
-                  className="btn btn-primary group px-6 sm:px-8 py-4 sm:py-3 text-xs-plus leading-none"
+                  className="btn btn-primary group"
                 >
                   {t('home.hero.join')}
                   <motion.span
@@ -219,7 +219,7 @@ const Home = () => {
                 </Link>
                 <Link
                   to="/about"
-                  className="btn btn-outline px-6 sm:px-8 py-4 sm:py-3 text-xs-plus border-slate-300 text-slate-700 hover:border-primary hover:text-white leading-none"
+                  className="btn btn-outline"
                 >
                   {t('home.hero.discover')}
                 </Link>
@@ -298,19 +298,19 @@ const Home = () => {
                 whileInView="visible"
                 viewport={{ once: true, margin: '-60px' }}
                 whileHover={{ y: -12, boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}
-                className="text-center group p-4 sm:p-8 rounded-2xl transition-all"
+                className="text-center group p-8 rounded-2xl transition-all"
               >
                 <motion.div
-                  className="w-16 sm:w-20 h-16 sm:h-20 mx-auto flex items-center justify-center bg-background rounded-full mb-4 sm:mb-8 group-hover:bg-primary/5 transition-colors"
+                  className="w-20 h-20 mx-auto flex items-center justify-center bg-background rounded-full mb-8 group-hover:bg-primary/5 transition-colors"
                   whileHover={{ rotate: 10, scale: 1.1 }}
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
                   <item.icon className="text-primary" size={24} strokeWidth={1.5} />
                 </motion.div>
-                <h3 className="text-lg md:text-xl mb-3 sm:mb-4 font-bold uppercase tracking-widest-sm">
+                <h3 className="text-xl mb-4 font-bold uppercase tracking-widest-sm">
                   {item.title}
                 </h3>
-                <p className="text-sm sm:text-base text-muted font-light leading-relaxed max-w-sm mx-auto">
+                <p className="text-base text-muted font-light leading-relaxed max-w-sm mx-auto">
                   {item.desc}
                 </p>
               </motion.div>
@@ -322,7 +322,7 @@ const Home = () => {
       {/* ── Featured Impact - Bento Layout with Counting Animation ── */}
       <section className="section-padding bg-cream overflow-hidden">
         <div className="container">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 gap-6 md:gap-8">
+          <div className="flex justify-between items-end mb-20">
             <motion.div
               className="max-w-2xl"
               initial={{ x: -40, opacity: 0 }}
@@ -330,10 +330,10 @@ const Home = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="text-primary font-bold text-[10px] tracking-widest uppercase mb-3 md:mb-4 block">
+              <span className="text-primary font-bold text-[10px] tracking-widest uppercase mb-4 block">
                 {t('home.impact.label')}
               </span>
-              <h2 className="text-xl sm:text-4xl md:text-5xl font-light leading-tight">
+              <h2 className="text-5xl font-light leading-tight">
                 {t('home.impact.titlePart1')}{' '}
                 <span className="text-primary italic">{t('home.impact.titlePart2')}</span>
               </h2>
@@ -346,10 +346,10 @@ const Home = () => {
             >
               <Link
                 to="/programs"
-                className="text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-2 md:gap-3 group mt-4 md:mt-0"
+                className="text-xs font-bold uppercase tracking-widest text-primary flex items-center gap-3 group"
               >
                 {t('home.impact.explore')}{' '}
-                <div className="w-8 md:w-10 h-px bg-primary transition-all group-hover:w-12 md:group-hover:w-16"></div>
+                <div className="w-16 h-px bg-primary transition-all group-hover:w-24"></div>
               </Link>
             </motion.div>
           </div>
@@ -366,13 +366,12 @@ const Home = () => {
                 whileInView={{ y: 0, opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ y: -6, scale: 1.02 }}
-                className="glass py-8 sm:py-12 px-4 sm:px-12 flex flex-col justify-center items-center bg-primary text-white rounded-2xl cursor-default text-center"
+                className="glass py-12 px-12 flex flex-col justify-center items-center bg-primary text-white rounded-2xl cursor-default text-center"
               >
-                <h4 className="text-4xl sm:text-5xl font-light mb-2">
+                <h4 className="text-5xl font-light mb-2">
                   <AnimatedCounter end={item.end} suffix={item.suffix} duration={item.duration} />
                 </h4>
-                <p className="text-white/70 uppercase text-[10px] sm:text-xs tracking-widest-lg">
+                <p className="text-white/70 uppercase text-xs tracking-widest-lg">
                   {item.label}
                 </p>
               </motion.div>

@@ -53,13 +53,13 @@ const Programs = () => {
   ];
 
   return (
-    <div className="programs-v2 pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32">
+    <div className="programs-v2 pt-40 pb-32">
       <div className="container">
-        <div className="max-w-4xl mb-12 sm:mb-24 md:mb-32">
+        <div className="max-w-4xl mb-32">
           <motion.span 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-6 sm:mb-10 block"
+            className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-10 block"
           >
             {t('programs.header.badge')}
           </motion.span>
@@ -67,7 +67,7 @@ const Programs = () => {
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 1 }}
-            className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-light text-text leading-tight mb-6 sm:mb-12"
+            className="text-7xl font-light text-text leading-tight mb-12"
           >
             {t('programs.header.titlePart1')} <br />
             <span className="italic font-normal text-primary">{t('programs.header.titlePart2')}</span>

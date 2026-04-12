@@ -84,13 +84,13 @@ const Contact = () => {
   };
 
   return (
-    <div className="contact-v2 pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32">
+    <div className="contact-v2 pt-40 pb-32">
       <div className="container">
-        <div className="max-w-4xl mb-12 sm:mb-24 md:mb-32">
+        <div className="max-w-4xl mb-32">
           <motion.span 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-6 sm:mb-10 block"
+            className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-10 block"
           >
             {t('contact.header.badge')}
           </motion.span>
@@ -98,7 +98,7 @@ const Contact = () => {
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 1 }}
-            className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-light text-text leading-tight mb-6 sm:mb-12"
+            className="text-7xl font-light text-text leading-tight mb-12"
           >
             {t('contact.header.titlePart1')} <br />
             <span className="italic font-normal text-primary">{t('contact.header.titlePart2')}</span>
@@ -107,7 +107,7 @@ const Contact = () => {
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-base sm:text-lg md:text-xl text-muted font-light max-w-2xl"
+            className="text-2xl lg:text-3xl text-muted font-light max-w-2xl"
           >
             {t('contact.header.description')}
           </motion.p>
@@ -132,7 +132,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="bg-white border border-slate-300 px-4 sm:px-6 py-4 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base text-text placeholder:text-slate-400 min-h-[54px]"
+                  className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 min-h-48px"
                   placeholder={t('contact.form.namePlaceholder')}
                   autoComplete="name"
                 />
@@ -147,7 +147,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="bg-white border border-slate-300 px-4 sm:px-6 py-4 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base text-text placeholder:text-slate-400 min-h-[54px]"
+                  className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 min-h-48px"
                   placeholder="john@example.com"
                   autoComplete="email"
                 />
@@ -161,7 +161,7 @@ const Contact = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="bg-white border border-slate-300 px-4 sm:px-6 py-4 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base text-text placeholder:text-slate-400 min-h-[54px]"
+                  className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 min-h-48px"
                   placeholder="9876543210"
                   autoComplete="tel"
                 />
@@ -175,7 +175,7 @@ const Contact = () => {
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
-                  className="bg-white border border-slate-300 px-4 sm:px-6 py-4 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base text-text placeholder:text-slate-400 min-h-[54px]"
+                  className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 min-h-48px"
                   placeholder={t('contact.form.subjectPlaceholder')}
                   autoComplete="off"
                 />
@@ -263,12 +263,10 @@ const Contact = () => {
               transition={{ duration: 1.2 }}
               viewport={{ once: true }}
             >
-              <div className="glass rounded-2xl sm:rounded-3xl overflow-hidden h-64 sm:h-80 md:h-[350px] shadow-premium relative group">
+              <div className="glass rounded-2xl sm:rounded-3xl overflow-hidden shadow-premium relative group" style={{ aspectRatio: '1 / 1', width: '100%' }}>
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.123456789!2d73.858276!3d18.4441143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2ebeee0ddc91b%3A0xb4f4a6a625dccb3f!2sHouse%20No.%2082%2C%20Jai%20Shankar%20Colony%2C%20Katraj%2C%20Pune%2C%20Maharashtra%20411046!5e0!3m2!1sen!2sin!4v1695900000000" 
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
+                  style={{ border: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} 
                   allowFullScreen="" 
                   loading="lazy"
                   title="Madhuban NGO Location"

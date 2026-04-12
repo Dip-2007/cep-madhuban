@@ -28,31 +28,31 @@ const Donate = () => {
   };
 
   return (
-    <div className="donate-page pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32">
+    <div className="donate-page pt-40 pb-32">
       <div className="container">
         {/* Header Section */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="max-w-4xl mb-12 sm:mb-24 md:mb-32 text-center mx-auto"
+          className="max-w-4xl mb-32 text-center"
         >
           <motion.span 
             variants={fadeInUp} 
-            className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-6 sm:mb-10 block"
+            className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-10 block"
           >
             {t('donate.header.badge')}
           </motion.span>
           <motion.h1 
             variants={fadeInUp} 
-            className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-light text-text leading-tight mb-6 sm:mb-12"
+            className="text-7xl font-light text-text leading-tight mb-12"
           >
             {t('donate.header.titlePart1')}<br />
             <span className="italic font-normal text-primary">{t('donate.header.titlePart2')}</span>
           </motion.h1>
           <motion.p 
             variants={fadeInUp} 
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted font-light leading-relaxed max-w-3xl mx-auto"
+            className="text-2xl lg:text-3xl text-muted font-light leading-relaxed max-w-3xl mx-auto"
           >
             {t('donate.header.description')}
           </motion.p>
@@ -84,9 +84,15 @@ const Donate = () => {
               className="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 sm:p-12 shadow-lg hover:shadow-xl transition-shadow duration-500 border border-gray-100"
             >
               <div className="flex items-center gap-3 mb-6">
-                <Heart className="w-6 h-6 text-primary" />
+                <svg style={{ width: '24px', height: '24px', flexShrink: 0 }} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.2-.4-4.8H24v9h12.4c-.5 2.9-2.2 5.4-4.7 7.1v5.9h7.6c4.5-4.1 7.1-10.2 7.1-17.2z" />
+                  <path fill="#34A853" d="M24 47c6.2 0 11.4-2.1 15.2-5.6l-7.6-5.9c-2 1.3-4.7 2.1-7.6 2.1-5.9 0-10.9-4-12.7-9.4H3.4v6C7.3 41.9 15 47 24 47z" />
+                  <path fill="#FBBC05" d="M11.3 28.2c-.4-1.3-.7-2.7-.7-4.2s.3-2.9.7-4.2v-6H3.4A23.9 23.9 0 0 0 0 24c0 3.8.9 7.4 2.5 10.7l8.8-6.5z" />
+                  <path fill="#EA4335" d="M24 9.6c3.4 0 6.4 1.2 8.8 3.5l6.6-6.6a23.4 23.4 0 0 0-15.4-6.5C15 0 7.3 5.1 3.4 12.8l7.9 6.2c1.8-5.4 6.8-9.4 12.7-9.4z" />
+                </svg>
                 <h2 className="text-2xl sm:text-3xl font-bold text-primary">{t('donate.gpay.title')}</h2>
               </div>
+
               
               <div className="space-y-4">
                 <div>

@@ -64,14 +64,15 @@ const Header = () => {
             />
             <motion.span 
                style={{ scale: logoScale }}
-               className="text-primary font-bold text-xl tracking-widest ml-1 hidden sm:block"
+               className="text-primary font-bold text-xl tracking-widest ml-1"
             >
                {t('nav.madhuban')}
             </motion.span>
           </NavLink>
 
           {/* Desktop Menu */}
-          <ul className="hidden lg:flex items-center gap-6 xl:gap-8 ml-8 xl:ml-12 h-full">
+          {/* Desktop Menu */}
+          <ul className="flex items-center gap-6 xl:gap-8 ml-8 xl:ml-12 h-full">
             {navLinks.map((link) => {
               const isActive = link.path === '/' ? location.pathname === '/' : location.pathname.startsWith(link.path);
               return (
@@ -100,7 +101,7 @@ const Header = () => {
             })}
           </ul>
 
-          <div className="hidden lg:flex items-center ml-auto gap-4">
+          <div className="flex items-center ml-auto gap-4">
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -128,86 +129,9 @@ const Header = () => {
               </motion.button>
             </NavLink>
           </div>
-          {/* Mobile Menu Toggle */}
-          <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
-            <NavLink to="/donate">
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn btn-primary text-[10px] px-4 py-2 leading-none"
-              >
-                {t('nav.support')}
-              </motion.button>
-            </NavLink>
-            <button 
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-1 sm:p-2 rounded-xl transition-colors"
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-            >
-              <motion.div
-                initial={false}
-                animate={{ rotate: isOpen ? 90 : 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                {isOpen ? <X size={26} strokeWidth={2.5} className="text-primary" /> : <Menu size={26} strokeWidth={2.5} className="text-primary" />}
-              </motion.div>
-            </button>
-          </div>
         </motion.nav>
       </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:hidden fixed top-24 left-4 right-4 glass p-6 sm:p-8 flex flex-col gap-4 sm:gap-6 rounded-3xl z-50 shadow-2xl border border-white/50"
-          >
-            {navLinks.map((link) => {
-              const isActive = link.path === '/' ? location.pathname === '/' : location.pathname.startsWith(link.path);
-              return (
-                <Link 
-                  key={link.name}
-                  to={link.path} 
-                  onClick={() => setIsOpen(false)}
-                  className="relative text-xs sm:text-sm font-bold uppercase tracking-widest transition-colors text-center py-3 px-4 rounded-xl overflow-hidden"
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="mobile-pill"
-                      className="absolute inset-0 bg-primary rounded-xl -z-10"
-                      initial={false}
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                    />
-                  )}
-                  <span className={`relative z-10 transition-colors ${isActive ? 'text-white' : 'text-slate-500 hover:text-primary'}`}>{link.name}</span>
-                </Link>
-              );
-            })}
-            <div className="border-t border-primary/10 my-2"></div>
-            
-            <div className="grid grid-cols-2 gap-3 mt-2">
-              <button 
-                onClick={() => setIsDark(!isDark)}
-                className={`flex items-center justify-center gap-2 py-3 rounded-xl transition-colors ${isDark ? 'bg-white/10 text-white' : 'bg-black/5 text-slate-700'}`}
-              >
-                {isDark ? <Sun size={18} /> : <Moon size={18} />}
-                <span className="text-[10px] font-bold uppercase tracking-widest">{isDark ? 'Light' : 'Dark'}</span>
-              </button>
-              <button 
-                onClick={toggleLanguage}
-                className="flex items-center justify-center gap-2 py-3 bg-primary text-white rounded-xl shadow-md"
-              >
-                <Languages size={18} />
-                <span className="text-[10px] font-bold uppercase tracking-widest">{language === 'en' ? 'मराठी' : 'ENG'}</span>
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.header>
   );
 };
