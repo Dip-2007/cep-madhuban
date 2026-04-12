@@ -202,23 +202,24 @@ const Home = () => {
 
               <motion.div
                 variants={itemVars}
-                className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4"
+                className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 mb-4 sm:mb-0"
               >
                 <Link
                   to="/contact"
-                  className="btn btn-primary group px-6 sm:px-8 text-tiny sm:text-xs-plus"
+                  className="btn btn-primary group px-6 sm:px-8 py-4 sm:py-3 text-xs-plus leading-none"
                 >
                   {t('home.hero.join')}
                   <motion.span
                     animate={{ x: [0, 5, 0] }}
                     transition={{ repeat: Infinity, duration: 1.5 }}
+                    className="inline-block ml-2"
                   >
-                    <ArrowRight size={12} className="ml-2 sm:ml-3" />
+                    <ArrowRight size={14} />
                   </motion.span>
                 </Link>
                 <Link
                   to="/about"
-                  className="btn btn-outline px-6 sm:px-8 text-tiny sm:text-xs-plus border-slate-300 text-slate-700 hover:border-primary hover:text-white"
+                  className="btn btn-outline px-6 sm:px-8 py-4 sm:py-3 text-xs-plus border-slate-300 text-slate-700 hover:border-primary hover:text-white leading-none"
                 >
                   {t('home.hero.discover')}
                 </Link>
@@ -306,10 +307,10 @@ const Home = () => {
                 >
                   <item.icon className="text-primary" size={24} strokeWidth={1.5} />
                 </motion.div>
-                <h3 className="text-base sm:text-lg md:text-xl mb-3 sm:mb-4 font-medium uppercase tracking-wider">
+                <h3 className="text-lg md:text-xl mb-3 sm:mb-4 font-bold uppercase tracking-widest-sm">
                   {item.title}
                 </h3>
-                <p className="text-sm sm:text-base text-muted font-light leading-relaxed">
+                <p className="text-sm sm:text-base text-muted font-light leading-relaxed max-w-sm mx-auto">
                   {item.desc}
                 </p>
               </motion.div>
@@ -366,12 +367,12 @@ const Home = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ y: -6, scale: 1.02 }}
-                className="glass py-8 sm:py-10 px-6 sm:px-16 flex flex-col justify-center items-center bg-primary text-white rounded-2xl cursor-default"
+                className="glass py-8 sm:py-12 px-4 sm:px-12 flex flex-col justify-center items-center bg-primary text-white rounded-2xl cursor-default text-center"
               >
-                <h4 className="text-3xl sm:text-4xl md:text-5xl font-light mb-2">
+                <h4 className="text-4xl sm:text-5xl font-light mb-2">
                   <AnimatedCounter end={item.end} suffix={item.suffix} duration={item.duration} />
                 </h4>
-                <p className="text-white/60 uppercase text-tiny sm:text-xs-plus tracking-widest-xs sm:tracking-widest-sm">
+                <p className="text-white/70 uppercase text-[10px] sm:text-xs tracking-widest-lg">
                   {item.label}
                 </p>
               </motion.div>

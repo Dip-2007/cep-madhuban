@@ -11,14 +11,14 @@ const About = () => {
   };
 
   return (
-    <div className="about-v2 pt-40 pb-32">
+    <div className="about-v2 pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32">
       <div className="container">
         {/* Header Section */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="max-w-4xl mb-16 sm:mb-24 md:mb-32"
+          className="max-w-4xl mb-12 sm:mb-24 md:mb-32"
         >
           <motion.span variants={fadeInUp} className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary mb-6 sm:mb-10 block">{t('about.header.badge')}</motion.span>
           <motion.h1 variants={fadeInUp} className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-light text-text leading-tight mb-6 sm:mb-12">
@@ -31,7 +31,7 @@ const About = () => {
         </motion.div>
 
         {/* Narrative Section */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 sm:gap-16 md:gap-24 items-start mb-24 md:mb-40">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 sm:gap-16 md:gap-24 items-start mb-20 sm:mb-24 md:mb-40">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -99,8 +99,8 @@ const About = () => {
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
           <div className="relative z-10">
-            <h2 className="text-4xl md:text-5xl font-light mb-10 leading-tight">{t('about.vision.titlePart1')} <span className="italic">{t('about.vision.titlePart2')}</span></h2>
-            <p className="text-xl md:text-3xl font-light italic leading-relaxed max-w-4xl mx-auto opacity-80">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-6 sm:mb-10 leading-tight">{t('about.vision.titlePart1')} <span className="italic">{t('about.vision.titlePart2')}</span></h2>
+            <p className="text-lg sm:text-xl md:text-3xl font-light italic leading-relaxed max-w-4xl mx-auto opacity-80">
               {t('about.vision.desc')}
             </p>
           </div>

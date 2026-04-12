@@ -38,9 +38,9 @@ const Gallery = () => {
   const allVideos = [...(dynamicVideos || []), ...staticVideos];
 
   return (
-    <div className="gallery-v2 pt-40 pb-32">
+    <div className="gallery-v2 pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32">
       <div className="container">
-        <div className="max-w-4xl mb-16 sm:mb-24 md:mb-32">
+        <div className="max-w-4xl mb-12 sm:mb-24 md:mb-32">
           <motion.span 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

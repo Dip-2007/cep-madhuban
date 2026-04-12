@@ -84,9 +84,9 @@ const Contact = () => {
   };
 
   return (
-    <div className="contact-v2 pt-40 pb-32">
+    <div className="contact-v2 pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32">
       <div className="container">
-        <div className="max-w-4xl mb-16 sm:mb-24 md:mb-32">
+        <div className="max-w-4xl mb-12 sm:mb-24 md:mb-32">
           <motion.span 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -132,7 +132,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 min-h-48px"
+                  className="bg-white border border-slate-300 px-4 sm:px-6 py-4 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base text-text placeholder:text-slate-400 min-h-[54px]"
                   placeholder={t('contact.form.namePlaceholder')}
                   autoComplete="name"
                 />
@@ -147,7 +147,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 min-h-48px"
+                  className="bg-white border border-slate-300 px-4 sm:px-6 py-4 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base text-text placeholder:text-slate-400 min-h-[54px]"
                   placeholder="john@example.com"
                   autoComplete="email"
                 />
@@ -161,7 +161,7 @@ const Contact = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 min-h-48px"
+                  className="bg-white border border-slate-300 px-4 sm:px-6 py-4 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base text-text placeholder:text-slate-400 min-h-[54px]"
                   placeholder="9876543210"
                   autoComplete="tel"
                 />
@@ -175,7 +175,7 @@ const Contact = () => {
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
-                  className="bg-white border border-slate-300 px-4 sm:px-6 py-3 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base sm:text-base text-text placeholder:text-slate-400 min-h-48px"
+                  className="bg-white border border-slate-300 px-4 sm:px-6 py-4 sm:py-4 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-base text-text placeholder:text-slate-400 min-h-[54px]"
                   placeholder={t('contact.form.subjectPlaceholder')}
                   autoComplete="off"
                 />

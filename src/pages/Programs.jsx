@@ -53,9 +53,9 @@ const Programs = () => {
   ];
 
   return (
-    <div className="programs-v2 pt-40 pb-32">
+    <div className="programs-v2 pt-24 sm:pt-32 lg:pt-40 pb-16 sm:pb-24 lg:pb-32">
       <div className="container">
-        <div className="max-w-4xl mb-16 sm:mb-24 md:mb-32">
+        <div className="max-w-4xl mb-12 sm:mb-24 md:mb-32">
           <motion.span 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -91,7 +91,7 @@ const Programs = () => {
               transition={{ duration: 0.8, delay: i * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -15 }}
-              className="glass p-6 sm:p-8 md:p-12 rounded-2xl group transition-all duration-500 hover:shadow-premium"
+              className="glass p-6 sm:p-8 md:p-12 rounded-2xl group transition-all duration-500 hover:shadow-premium border-none"
             >
               <div className={`w-14 sm:w-16 h-14 sm:h-16 rounded-xl ${prog.bg} flex items-center justify-center mb-6 sm:mb-8 md:mb-10 group-hover:scale-110 transition-transform duration-500`}>
                 <prog.icon className={prog.color} size={28} strokeWidth={1.5} />
@@ -110,9 +110,9 @@ const Programs = () => {
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          className="mt-16 sm:mt-20 md:mt-32 glass p-8 sm:p-12 md:p-20 bg-primary rounded-2xl sm:rounded-3xl text-white text-center"
+          className="mt-16 sm:mt-20 md:mt-32 glass p-6 sm:p-12 md:p-20 bg-primary rounded-2xl sm:rounded-3xl text-white text-center"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-6 sm:mb-8">{t('programs.cta.title')}</h2>
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-light mb-6 sm:mb-8">{t('programs.cta.title')}</h2>
           <p className="text-white/60 mb-8 sm:mb-10 md:mb-12 max-w-xl mx-auto font-light text-sm sm:text-base md:text-lg">
             {t('programs.cta.desc')}
           </p>

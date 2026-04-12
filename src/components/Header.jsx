@@ -64,7 +64,7 @@ const Header = () => {
             />
             <motion.span 
                style={{ scale: logoScale }}
-               className="text-primary font-bold text-xl tracking-widest ml-1"
+               className="text-primary font-bold text-xl tracking-widest ml-1 hidden sm:block"
             >
                {t('nav.madhuban')}
             </motion.span>
@@ -129,31 +129,19 @@ const Header = () => {
             </NavLink>
           </div>
           {/* Mobile Menu Toggle */}
-          <div className="flex items-center gap-3 sm:gap-4 lg:hidden">
-            <button 
-              onClick={() => setIsDark(!isDark)}
-              className="p-2 text-slate-600 bg-black/5 rounded-full"
-            >
-              {isDark ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-            <button 
-              onClick={toggleLanguage}
-              className="flex items-center p-2 text-white bg-gradient-to-r from-primary to-primary-light rounded-full shadow-md"
-            >
-              <Languages size={16} />
-            </button>
+          <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
             <NavLink to="/donate">
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn btn-primary text-[10px] px-4 py-2"
+                className="btn btn-primary text-[10px] px-4 py-2 leading-none"
               >
                 {t('nav.support')}
               </motion.button>
             </NavLink>
             <button 
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-xl hover:bg-white/20 transition-colors"
+              className="p-1 sm:p-2 rounded-xl transition-colors"
               aria-label={isOpen ? "Close menu" : "Open menu"}
             >
               <motion.div
@@ -161,7 +149,7 @@ const Header = () => {
                 animate={{ rotate: isOpen ? 90 : 0 }}
                 transition={{ duration: 0.2 }}
               >
-                {isOpen ? <X size={24} className="text-primary" /> : <Menu size={24} className="text-primary" />}
+                {isOpen ? <X size={26} strokeWidth={2.5} className="text-primary" /> : <Menu size={26} strokeWidth={2.5} className="text-primary" />}
               </motion.div>
             </button>
           </div>
@@ -199,14 +187,24 @@ const Header = () => {
                 </Link>
               );
             })}
-            <div className="border-t border-primary/20 my-2"></div>
-            <NavLink 
-              to="/donate"
-              onClick={() => setIsOpen(false)}
-              className="w-full"
-            >
-              <button className="btn btn-primary w-full py-3 sm:py-4 text-[10px] sm:text-xs uppercase tracking-widest">{t('nav.support')}</button>
-            </NavLink>
+            <div className="border-t border-primary/10 my-2"></div>
+            
+            <div className="grid grid-cols-2 gap-3 mt-2">
+              <button 
+                onClick={() => setIsDark(!isDark)}
+                className={`flex items-center justify-center gap-2 py-3 rounded-xl transition-colors ${isDark ? 'bg-white/10 text-white' : 'bg-black/5 text-slate-700'}`}
+              >
+                {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                <span className="text-[10px] font-bold uppercase tracking-widest">{isDark ? 'Light' : 'Dark'}</span>
+              </button>
+              <button 
+                onClick={toggleLanguage}
+                className="flex items-center justify-center gap-2 py-3 bg-primary text-white rounded-xl shadow-md"
+              >
+                <Languages size={18} />
+                <span className="text-[10px] font-bold uppercase tracking-widest">{language === 'en' ? 'मराठी' : 'ENG'}</span>
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
