@@ -1465,12 +1465,13 @@ html.dark .text-slate-500 {
     min-width: 48px;
   }
 
-  button {
-    min-height: 45px;
+  /* Exclude header nav toolbar buttons from inflated touch targets */
+  button:not(.mobile-menu-close-btn):not(.mobile-menu-action-btn) {
+    min-height: auto;
   }
 
-  a {
-    display: inline-block;
+  .mobile-menu-links a {
+    display: block;
     padding: 0.25rem;
   }
 }
@@ -1621,9 +1622,9 @@ html.dark .text-slate-500 {
     max-width: 100vw;
   }
 
-  nav a,
-  nav button {
-    padding: 0.75rem 1rem;
+  /* Only apply full-width to mobile slide-in menu links, not header toolbar */
+  .mobile-menu-links a,
+  .mobile-menu-links button {
     display: block;
     width: 100%;
     text-align: left;
@@ -1682,20 +1683,7 @@ video {
 /* Enhanced Touch Targets */
 @media (hover: none) and (pointer: coarse) {
 
-  /* Mobile/Touch devices */
-  button,
-  a,
-  [role="button"] {
-    min-height: 48px;
-    min-width: 48px;
-    padding: 0.75rem 1rem;
-  }
-
-  .btn {
-    min-height: 50px;
-    min-width: 50px;
-  }
-
+  /* Only enlarge form inputs on touch devices, not nav buttons */
   input,
   textarea,
   select {
