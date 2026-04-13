@@ -1366,6 +1366,21 @@ html.dark .text-slate-500 {
   }
 }
 
+/* sm: utilities (min-width: 640px) - show/hide at small breakpoint */
+@media (min-width: 640px) {
+  .sm\:block {
+    display: block;
+  }
+
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:hidden {
+    display: none;
+  }
+}
+
 /* Responsive Utilities */
 @media (max-width: 640px) {
   .sm\:hidden {
